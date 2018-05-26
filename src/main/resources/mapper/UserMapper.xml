@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.domain.Customer">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="address" property="address"/>
+    </resultMap>
+
+    <sql id="base_column_list">
+        id,name,address
+    </sql>
+
+    <select id="getCustomerMessageById" resultMap="BaseResultMap" parameterType="int">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM customer
+        WHERE id = #{id}
+    </select>
+
+</mapper>
