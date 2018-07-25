@@ -24,7 +24,7 @@ public class UserController {
 
     @RequestMapping("/say")
     public String sayHello(){
-        String str = "Hello--World--20180526";
+        String str = "Hello--World--20180726";
         return str;
     }
 
