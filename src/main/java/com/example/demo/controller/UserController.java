@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+
 /**
  * Created by ZHUYONGQIANG on 2018/5/26.
  */
@@ -24,7 +26,8 @@ public class UserController {
 
     @RequestMapping("/say")
     public String sayHello(){
-        String str = "Hello--World--20180726";
+        Date date = new Date();
+        String str = "Hello--World--20180726:{"+date+"}";
         return str;
     }
 
