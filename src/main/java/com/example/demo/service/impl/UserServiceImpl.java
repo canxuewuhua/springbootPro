@@ -18,4 +18,9 @@ public class UserServiceImpl implements UserService{
     public Customer getCustomerMessageById(int id) {
         return userMapper.getCustomerMessageById(id);
     }
+
+    @Override
+    public void updateUser() {
+        userMapper.updateUser();
+    }
 }

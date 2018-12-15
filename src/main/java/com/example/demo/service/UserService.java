@@ -7,4 +7,5 @@ import com.example.demo.domain.Customer;
  */
 public interface UserService {
     public Customer getCustomerMessageById(int id);
+    public void updateUser();
 }

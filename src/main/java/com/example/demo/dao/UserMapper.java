@@ -12,4 +12,6 @@ public interface UserMapper {
 
     //根据客户id获取客户信息
     public Customer getCustomerMessageById(int id);
+
+    public void updateUser();
 }

@@ -70,14 +70,13 @@
 	</dependencies>
 
 	<build>
+        <finalName>${projectFilename}</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
 				<excludes>
 					<exclude>dev/*</exclude>
 					<exclude>local/*</exclude>
-					<exclude>prod/*</exclude>
-					<exclude>test/*</exclude>
 				</excludes>
 				<filtering>true</filtering>
 			</resource>
@@ -98,6 +97,7 @@
 		<profile>
 			<id>local</id>
 			<properties>
+				<projectFilename>springbootPro-local</projectFilename>
 				<profile.active>local</profile.active>
 			</properties>
 			<activation>
@@ -107,19 +107,8 @@
 		<profile>
 			<id>dev</id>
 			<properties>
+				<projectFilename>springbootPro-dev</projectFilename>
 				<profile.active>dev</profile.active>
-			</properties>
-		</profile>
-		<profile>
-			<id>prod</id>
-			<properties>
-				<profile.active>prod</profile.active>
-			</properties>
-		</profile>
-		<profile>
-			<id>test</id>
-			<properties>
-				<profile.active>test</profile.active>
 			</properties>
 		</profile>
 	</profiles>

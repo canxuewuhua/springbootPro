@@ -6,6 +6,7 @@
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="address" property="address"/>
+        <result column="count" property="count"/>
     </resultMap>
 
     <sql id="base_column_list">
@@ -15,8 +16,12 @@
     <select id="getCustomerMessageById" resultMap="BaseResultMap" parameterType="int">
         SELECT
         <include refid="base_column_list"/>
-        FROM customer
+        FROM user
         WHERE id = #{id}
     </select>
+
+    <update id="updateUser">
+       UPDATE user SET count=count+1;
+    </update>
 
 </mapper>
