@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
 @ServletComponentScan
-@MapperScan("com.example.demo.dao")
+@MapperScan({"com.example.demo.dao","com.example.demo.mapper"})
 public class SpringBootWildApplication {
 
 	public static void main(String[] args) {

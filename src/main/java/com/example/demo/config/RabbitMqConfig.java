@@ -11,8 +11,8 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
-@EnableCaching
+//@Configuration
+//@EnableCaching
 @Slf4j
 public class RabbitMqConfig implements RabbitTemplate.ReturnCallback {
 
