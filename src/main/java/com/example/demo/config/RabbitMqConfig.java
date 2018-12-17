@@ -11,6 +11,9 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * 由于没有测试MQ，所以该处的注解注掉了，防止程序去连接rabbitMQ
+ */
 //@Configuration
 //@EnableCaching
 @Slf4j
