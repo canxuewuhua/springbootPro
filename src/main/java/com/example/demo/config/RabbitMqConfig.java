@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 由于没有测试MQ，所以该处的注解注掉了，防止程序去连接rabbitMQ
+ * 如果没有测试MQ，将该处的注解注掉，防止程序去连接rabbitMQ
  */
 //@Configuration
 //@EnableCaching
@@ -37,10 +37,13 @@ public class RabbitMqConfig implements RabbitTemplate.ReturnCallback {
         //RabbitMQConfigDTO rabbitMQConfigDTO = JSONObject.parseObject(response, RabbitMQConfigDTO.class);
 
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
-        connectionFactory.setHost("192.168.199.239");
+        //connectionFactory.setHost("192.168.199.239");
+        connectionFactory.setHost("120.131.15.17");
         connectionFactory.setPort(5672);
-        connectionFactory.setUsername("admin");
-        connectionFactory.setPassword("123456");
+        //connectionFactory.setUsername("admin");
+        connectionFactory.setUsername("ksrong");
+        //connectionFactory.setPassword("123456");
+        connectionFactory.setPassword("pvf6ujK7AJkmeVIN");
         connectionFactory.setPublisherConfirms(true);
 
         log.info("rabbitMQ初始化成功");
