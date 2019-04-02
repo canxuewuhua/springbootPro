@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.mapper.EmployeeDAO">
-  <resultMap id="BaseResultMap" type="com.example.demo.domain.EmployeeVO">
+<mapper namespace="com.example.demo.mapper.UserDAO">
+  <resultMap id="BaseResultMap" type="com.example.demo.domain.UserVO">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="age" jdbcType="INTEGER" property="age" />
-    <result column="salary" jdbcType="DECIMAL" property="salary" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,9 +66,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, address, age, salary
+    id, name, address, age
   </sql>
-  <select id="selectByExample" parameterType="com.example.demo.domain.EmployeeVOExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.example.demo.domain.UserVOExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -93,19 +92,19 @@
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.example.demo.domain.EmployeeVOExample">
+  <delete id="deleteByExample" parameterType="com.example.demo.domain.UserVOExample">
     delete from user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.example.demo.domain.EmployeeVO">
-    insert into user (id, name, address,
-      age, salary)
+  <insert id="insert" parameterType="com.example.demo.domain.UserVO">
+    insert into user (id, name, address, 
+      age)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{age,jdbcType=INTEGER}, #{salary,jdbcType=DECIMAL})
+      #{age,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.demo.domain.EmployeeVO">
+  <insert id="insertSelective" parameterType="com.example.demo.domain.UserVO">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -119,9 +118,6 @@
       </if>
       <if test="age != null">
         age,
-      </if>
-      <if test="salary != null">
-        salary,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -137,12 +133,9 @@
       <if test="age != null">
         #{age,jdbcType=INTEGER},
       </if>
-      <if test="salary != null">
-        #{salary,jdbcType=DECIMAL},
-      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.demo.domain.EmployeeVOExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.example.demo.domain.UserVOExample" resultType="java.lang.Long">
     select count(*) from user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -163,9 +156,6 @@
       <if test="record.age != null">
         age = #{record.age,jdbcType=INTEGER},
       </if>
-      <if test="record.salary != null">
-        salary = #{record.salary,jdbcType=DECIMAL},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -176,13 +166,12 @@
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
-      age = #{record.age,jdbcType=INTEGER},
-      salary = #{record.salary,jdbcType=DECIMAL}
+      age = #{record.age,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.domain.EmployeeVO">
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.domain.UserVO">
     update user
     <set>
       <if test="name != null">
@@ -194,18 +183,14 @@
       <if test="age != null">
         age = #{age,jdbcType=INTEGER},
       </if>
-      <if test="salary != null">
-        salary = #{salary,jdbcType=DECIMAL},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.demo.domain.EmployeeVO">
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.domain.UserVO">
     update user
     set name = #{name,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
-      age = #{age,jdbcType=INTEGER},
-      salary = #{salary,jdbcType=DECIMAL}
+      age = #{age,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

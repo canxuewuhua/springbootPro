@@ -1,9 +1,12 @@
-package employee;
+package user;
 
 import com.example.demo.SpringBootWildApplication;
 import com.example.demo.domain.EmployeeVO;
+import com.example.demo.domain.UserVO;
 import com.example.demo.mapper.EmployeeDAO;
+import com.example.demo.mapper.UserDAO;
 import com.example.demo.service.EmployeeService;
+import com.example.demo.service.UserNewService;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -30,13 +33,13 @@ import java.util.List;
 @SpringBootTest(classes = SpringBootWildApplication.class)
 @WebAppConfiguration
 @Transactional(rollbackFor = Throwable.class)
-public class EmployeeMockTest {
+public class UserMockTest {
 
 	@MockBean
-	private EmployeeDAO employeeDAO;
+	private UserDAO userDAO;
 
 	@Autowired
-	private EmployeeService employeeService;
+	private UserNewService userNewService;
 
 	@Before
 	public void setUp() {
@@ -49,20 +52,19 @@ public class EmployeeMockTest {
 	@Test
 	@Rollback()
 	public void addEmployeeTest() {
-		List<EmployeeVO> employeeVOList = new ArrayList<>();
-		EmployeeVO employeeVO = new EmployeeVO();
-		employeeVO.setId(10273140);
-		employeeVO.setName("zhangsangeng");
-		employeeVO.setAddress("北京大兴");
-		employeeVO.setAge(28);
-		employeeVO.setSalary(new BigDecimal("5000"));
-		employeeVOList.add(employeeVO);
+		List<UserVO> employeeVOList = new ArrayList<>();
+		UserVO userVO = new UserVO();
+		userVO.setId(10273140);
+		userVO.setName("zhangsangeng");
+		userVO.setAddress("北京大兴");
+		userVO.setAge(28);
+		employeeVOList.add(userVO);
 
-		Mockito.when(employeeDAO.selectByExample(Mockito.anyObject())).thenReturn(employeeVOList);
+		Mockito.when(userDAO.selectByExample(Mockito.anyObject())).thenReturn(employeeVOList);
 
-		EmployeeVO emp = employeeService.getEmployeeById(10273140);
-		int empId = emp.getId();
-		Assert.assertEquals(empId, 10273140);
+		UserVO userVO1 = userNewService.getUserInfo(10273140);
+		String userName = userVO1.getName();
+		Assert.assertEquals(userName, "zhangsangeng");
 }
 
 	@After
