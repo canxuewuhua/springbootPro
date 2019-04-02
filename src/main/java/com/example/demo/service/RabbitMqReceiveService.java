@@ -32,6 +32,7 @@ public class RabbitMqReceiveService {
 		channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
 	}
 
+
 	private void consumerMessage(String userId){
 		log.info("调用权责发生制报表添加接口，初始参数：{}", userId);
 		try {

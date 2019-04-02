@@ -43,6 +43,11 @@ public class EmployeeServiceImpl implements EmployeeService{
 		employerDAO.updateByPrimaryKeySelective(employerVO);
 	}
 
+	public EmployeeVO getEmployeeById(int id){
+		EmployeeVO employee = employeeDAO.selectByPrimaryKey(id);
+		return employee;
+	}
+
 	public boolean testEmployeeTransaction(){
 		try {
 			log.info("开始执行parent方法");
