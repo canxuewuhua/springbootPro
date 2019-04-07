@@ -90,6 +90,13 @@
 			<version>4.12</version>
 		</dependency>
 
+		<!--自定义注解@Aspect的依赖 -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.9.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
