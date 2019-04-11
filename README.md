@@ -1,6 +1,6 @@
 # springbootPro
 
-# aop中执行顺序
+# 一、aop中执行顺序
 # @Pointcut定义切点
                               ③
                     @Before   → @Method
@@ -25,3 +25,19 @@
 # getConstructors()：获得类的public类型的构造方法。
 # getConstructor(Class[] parameterTypes)：获得类的特定构造方法，parameterTypes 参数指定构造方法的参数类型
 # newInstance()：通过类的不带参数的构造方法创建这个类的一个对象
+
+
+# 二、swagger的使用
+
+# 首先引入两个依赖 springfox-swagger2 和 springfox-swagger-ui
+# @Api 作用在类上，说明该类的作用 ，其中tags和description会显示在swagger的管理页面上
+# @ApiOperation：注解来给API增加方法说明， 其中notes和value也会显示在swagger的管理页面上
+# @OnlineApi这个注解是写的自定义的注解（新模块是开发人员写的，用于只有添加了ApiOperation注解的method才在API中显示）
+#需要引入SwaggerConfig类
+
+# swagger的访问路径为 http://localhost:8045/swagger-ui.html#
+
+#三、ResultDTO的使用
+
+# 依赖ResultUtils类，依赖CodeMsg类
+# 返回ResultUtils.success()或者是ResultUtils.fail
