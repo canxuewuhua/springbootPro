@@ -22,10 +22,11 @@ public class LambdaTest {
         printNotEmptyUser();
         printListDTOToMapKeyValue();
         printListDTOToListString();
-        printListAgeToCount();
         printUserCopyToStudent();
         printSortUserAge();
         printFilterAndSortedAndMap();
+        printListAgeToCount();
+        printGroupByUserProperties();
     }
 
     /**
@@ -166,7 +167,7 @@ public class LambdaTest {
 
         //1.分组计数
         List<User> list1= Arrays.asList(
-                new User("zhangsan",18,"4128196"),new User("lisi",30,"4128196"),new User("wangwu",29,"4128196"));
+                new User("zhangsan",18,"4128195"),new User("wamhwu",29,"4128196"),new User("wangwu",29,"4128196"));
 
         // 根据客户年龄进行分组 18、29、 30
         Map<Integer,List<User>> result1=list1.stream().collect(Collectors.groupingBy(User::getAge));
@@ -174,6 +175,53 @@ public class LambdaTest {
         //1.1根据某个属性分组计数
         Map<Integer,Long> result2=list1.stream().collect(Collectors.groupingBy(User::getAge, Collectors.counting()));
         System.out.println(result2);
+
+        Map<String,List<User>> result3=list1.stream().collect(Collectors.groupingBy(o -> o.getAge() + "_" + o.getUserName() + "_" + o.getIdentyID()));
+        List<User> assembledUserList = new ArrayList<>();
+        result3.forEach((k, v) -> assembleData(v, assembledUserList));
+        System.out.println(assembledUserList);
+    }
+
+    public static void assembleData(List<User> userList, List<User> assembledUserList){
+        for (User user : userList){
+            String userName = user.getUserName() + "_O";
+            user.setUserName(userName);
+            assembledUserList.add(user);
+        }
+    }
+
+    /**
+     * 循环列表，将对象User的名称小写转化为大写
+     */
+    public static  void printGroupByUserProperties(){
+
+        //1.分组计数
+        List<User> list1= Arrays.asList(
+                new User("zhangsan",18,"4128195"),new User("wamhwu",29,"4128196"),new User("wangwu",29,"4128196"));
+
+        // 循环列表，将user的用户名称小写转大写
+        list1.stream().forEach( a -> toUpperCase(a));
+        System.out.println(list1);
+    }
+    public static void toUpperCase(User user){
+        String userName = user.getUserName();
+        String userNameUpperCase = userName.toUpperCase();
+        user.setUserName(userNameUpperCase);
+    }
+
+
+    /**
+     * 循环列表，将对象User的名称小写转化为大写
+     */
+    public static  void printGroupByMapping(){
+
+        //1.分组计数
+        List<User> list1= Arrays.asList(
+                new User("zhangsan",18,"4128195"),new User("wamhwu",29,"4128196"),new User("wangwu",29,"4128196"));
+
+        // DOTO("待处理")
+        //Map<String, Set<String>> collectMap = planInfoList.stream().collect(Collectors.groupingBy(n -> n.getContractLedgerId(), Collectors.mapping(m -> m.getChargeOffStatus(), Collectors.toSet())));
+        System.out.println(list1);
     }
 }
 @Data
