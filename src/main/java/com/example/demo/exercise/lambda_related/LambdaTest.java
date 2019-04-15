@@ -10,23 +10,34 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
+ * Stream的使用过程有着固定的模式
+ *
+ *  1、创建Stream
+ * 2、通过中间操作，对原始Stream进行“变化”并生成新的Stream
+ * 3、使用完结操作，生成最终结果  创建——>变化——>完结
  *  lambda表达式一般用filter表示条件过滤，判断某个属性的值
- *                    sorted排序
- *                    map的话，表示将list对象转化为list<String>
- *                    collect的话，看collect()括号里面的是什么类型，返回就是什么类型
+ *  过滤器（Filter）
+ *  Filter对流对象中的所有元素进行过滤,该操作是一个中间操作，这意味着你可以在操作返回结果的基础上进行其他操作。
+ *   sorted排序
+ *  排序（Sorted）
+ *  该操作返回一个排序过后的流的视图，原始流的顺序不会改变
+ *  map的话，表示将list对象转化为list<String>
+ * 映射（Map） 该操作能将流对象中的每个元素映射为另一种元素，实现元素类型的转换
+ *  collect的话，看collect()括号里面的是什么类型，返回就是什么类型
  */
 public class LambdaTest {
     public static void main(String[] args) {
-        printToLowerCase();
-        printListName();
-        printNotEmptyUser();
-        printListDTOToMapKeyValue();
-        printListDTOToListString();
-        printUserCopyToStudent();
-        printSortUserAge();
-        printFilterAndSortedAndMap();
-        printListAgeToCount();
-        printGroupByUserProperties();
+//        printToLowerCase();
+//        printListName();
+//        printNotEmptyUser();
+//        printListDTOToMapKeyValue();
+//        printListDTOToListString();
+//        printUserCopyToStudent();
+//        printSortUserAge();
+//        printFilterAndSortedAndMap();
+//        printListAgeToCount();
+//        printGroupByUserProperties();
+          printGroupByMapping();
     }
 
     /**
@@ -82,6 +93,7 @@ public class LambdaTest {
 
     /**
      * 将对象list的某两个属性放进map的key和value中，达到将list转化为map的目的
+     * 收集（Collect）
      */
     public static void printListDTOToMapKeyValue(){
         User user01 = new User();
@@ -220,8 +232,8 @@ public class LambdaTest {
                 new User("zhangsan",18,"4128195"),new User("wamhwu",29,"4128196"),new User("wangwu",29,"4128196"));
 
         // DOTO("待处理")
-        //Map<String, Set<String>> collectMap = planInfoList.stream().collect(Collectors.groupingBy(n -> n.getContractLedgerId(), Collectors.mapping(m -> m.getChargeOffStatus(), Collectors.toSet())));
-        System.out.println(list1);
+        Map<String, Set<String>> collectMap = list1.stream().collect(Collectors.groupingBy(n -> n.getIdentyID(), Collectors.mapping(m -> m.getUserName(), Collectors.toSet())));
+        System.out.println(collectMap);
     }
 }
 @Data
