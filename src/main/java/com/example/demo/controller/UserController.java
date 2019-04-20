@@ -3,12 +3,11 @@ package com.example.demo.controller;
 import com.alibaba.fastjson.JSON;
 import com.example.demo.domain.Customer;
 import com.example.demo.service.UserService;
-import com.example.demo.test.DateUtil;
+import com.example.demo.util.DateUtil;
 import com.example.demo.vo.BaseReturn;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 

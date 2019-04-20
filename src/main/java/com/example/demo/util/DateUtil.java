@@ -1,5 +1,8 @@
-package com.example.demo.test;
+package com.example.demo.util;
 
+
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -11,15 +14,15 @@ import java.util.Calendar;
 import java.util.Date;
 
 @Component
+@Slf4j
 public class DateUtil {
 
     public static final String FORMAT_PATTERN_TIME = "yyyy-MM-dd HH:mm:ss";
     public static final String FORMAT_PATTERN_DAY = "yyyy-MM-dd";
-    public static final String FORMAT_PATTERN_MONTH= "yyyy-MM";
+    public static final String FORMAT_PATTERN_MONTH = "yyyy-MM";
     public static final String FORMAT_PATTERN_TIME_TOGETHER = "yyyyMMddHHmmssSSS";
+    private static String FORMAT_PATTERN_TIME_HH_MM_SS = "HH:mm:ss";
     private static final String SPLITTERS_LINE = "-";
-    public static final String ACOUNTING_DATE = "ACOUNTING_DATE";
-    public static final String ACOUNTING_DATE_VALUE = "OPEN";
 
     private static DateUtil dateUtil;
 
@@ -44,6 +47,19 @@ public class DateUtil {
         }
         return null;
     }
+
+
+    /**
+     * 把Long类型的时间戳格式转换成日期格式
+     * 这里只能处理秒级别的时间戳
+     */
+    public static String transferLongToDate(String dateFormat, long secondsTimestamp) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
+        Date date = new Date();
+        date.setTime(secondsTimestamp * 1000);
+        return simpleDateFormat.format(date);
+    }
+
 
     /**
      * 获取指定日期增加指定月间隔后的日期
@@ -73,6 +89,7 @@ public class DateUtil {
         cal.add(Calendar.DATE, interval);
         return cal.getTime();
     }
+
     /**
      * 使用指定的模式格式化日期
      *
@@ -85,6 +102,13 @@ public class DateUtil {
         return format.format(date);
     }
 
+    public static String getMilliTime() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat4 = new SimpleDateFormat(FORMAT_PATTERN_TIME_TOGETHER);
+        calendar.setTime(getCurrentTime());
+        return simpleDateFormat4.format(calendar.getTime());
+    }
+
     public static String getDateTime() {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(FORMAT_PATTERN_TIME);
@@ -92,12 +116,22 @@ public class DateUtil {
         return simpleDateFormat.format(calendar.getTime());
     }
 
-
+//    public static String getDateTime(String customerId) {
+//        Calendar calendar = Calendar.getInstance();
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(FORMAT_PATTERN_TIME);
+//        calendar.setTime(getCurrentTime(customerId));
+//        return simpleDateFormat.format(calendar.getTime());
+//    }
 
     public static Date getCurrentTime() {
         return new Date();
     }
 
+    public static String getTimeHHMMSS() {
+        SimpleDateFormat format = new SimpleDateFormat(FORMAT_PATTERN_TIME_HH_MM_SS);
+        Date date = new Date();
+        return format.format(date);
+    }
 
     public static boolean valid(String start, String end) {
         boolean flag = false;
@@ -211,11 +245,40 @@ public class DateUtil {
     }
 
     /**
+     * 功能描述：获得给定的两个日期之间相差的天数（日期不分前后）
+     *
+     * @param fromdate 日期 格式：Date
+     * @param todate   日期 格式：Date
+     * @return long
+     * @修改日志：1.0
+     */
+    public static long getDaysBetween(Date fromdate, Date todate) {
+        Calendar from = DateUtils.toCalendar(fromdate);
+        Calendar to = DateUtils.toCalendar(todate);
+        long millis = Math.abs(from.getTimeInMillis() - to.getTimeInMillis());
+        return millis / (24 * 60 * 60 * 1000);
+    }
+
+    /**
+     * 功能描述：获得给定的两个日期之间相差的天数（日期不分前后）返回正负值
+     *
+     * @param fromdate 日期 格式：Date
+     * @param todate   日期 格式：Date
+     * @return long
+     */
+    public static long getDaysBetweenValue(Date fromdate, Date todate) {
+        Calendar from = DateUtils.toCalendar(fromdate);
+        Calendar to = DateUtils.toCalendar(todate);
+        long millis = from.getTimeInMillis() - to.getTimeInMillis();
+        return millis / (24 * 60 * 60 * 1000);
+    }
+    /**
      * 返回yyyyMM格式的String
+     *
      * @param date : yyyy-MM-dd
      * @return yyyyMM
      */
-    public static String getYearMonth(Date date, String formatStr){
+    public static String getYearMonth(Date date, String formatStr) {
         //给日期格式设置默认值
         if (StringUtils.isEmpty(formatStr)) {
             formatStr = FORMAT_PATTERN_MONTH;
@@ -229,21 +292,23 @@ public class DateUtil {
     }
 
     /**
-      * 指定日期加上天数后的日期
-      * @param num 为增加的天数
-      * @param date 日期
-      * @return
-      * @throws ParseException
-      */
-    public static String plusDay(String date, int num){
-         Date currdate = strToDate(date, FORMAT_PATTERN_DAY);
-         Calendar cal = Calendar.getInstance();
-         cal.setTime(currdate);
-         cal.add(Calendar.DATE, num);// num为增加的天数，可以改变的
-         currdate = cal.getTime();
-         String enddate = dateToStr(currdate, FORMAT_PATTERN_DAY);
-         return enddate;
+     * 指定日期加上天数后的日期
+     *
+     * @param num  为增加的天数
+     * @param date 日期
+     * @return
+     * @throws ParseException
+     */
+    public static String plusDay(String date, int num) {
+        Date currdate = strToDate(date, FORMAT_PATTERN_DAY);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(currdate);
+        cal.add(Calendar.DATE, num);// num为增加的天数，可以改变的
+        currdate = cal.getTime();
+        String enddate = dateToStr(currdate, FORMAT_PATTERN_DAY);
+        return enddate;
     }
+
     /**
      * 方法描述： 比较两个时间的大小
      *
@@ -265,7 +330,7 @@ public class DateUtil {
                 flag = 0;
             }
         } catch (Exception e) {
-            //log.error("时间比较出现异常,异常信息:{},currDatetime1:{},currDatetime2:{}", e.getMessage(), currDatetime1, currDatetime2);
+            log.error("时间比较出现异常,异常信息:{},currDatetime1:{},currDatetime2:{}", e.getMessage(), currDatetime1, currDatetime2);
         }
         return flag;
     }

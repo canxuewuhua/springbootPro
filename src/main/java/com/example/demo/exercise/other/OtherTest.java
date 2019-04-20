@@ -87,11 +87,9 @@ public class OtherTest {
 
 
 	/**
-	 * 将 JavaBean对象转化为 Map   此方法未测试
-	 * @author wyply115
+	 * 将 JavaBean对象转化为 Map
 	 * @param bean 要转化的类型
 	 * @return Map对象
-	 * @version 2016年3月20日 11:03:01
 	 */
 	public static Map convertBean2Map(Object bean) throws Exception {
 		Class type = bean.getClass();

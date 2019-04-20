@@ -1,6 +1,6 @@
 package com.example.demo.exercise.lambda_related;
 
-import com.example.demo.test.DateUtil;
+import com.example.demo.util.DateUtil;
 import com.example.demo.util.SerialNumberUtil;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
@@ -163,7 +163,7 @@ public class LambdaTest {
      */
     public static void printFilterAndSortedAndMap(){
         List<User> userList= Arrays.asList(
-                new User("zhangsan",18,"4128196",DateUtil.addDays(new Date(),-1)),new User("lisi",30,"4128196",DateUtil.addDays(new Date(),0)),new User("wangwu",29,"4128196",DateUtil.addDays(new Date(),1)));
+                new User("zhangsan",18,"4128196",DateUtil.addDays(new Date(),-1)),new User("lisi",30,"4128196", DateUtil.addDays(new Date(),0)),new User("wangwu",29,"4128196",DateUtil.addDays(new Date(),1)));
         List<String> listDate = userList.stream()
                 .filter(vo -> vo.getIdentyID() != null || vo.getUserName() != null)
                 .sorted(Comparator.comparing(User::getAge))
