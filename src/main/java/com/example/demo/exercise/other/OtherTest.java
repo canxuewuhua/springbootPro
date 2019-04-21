@@ -1,6 +1,5 @@
 package com.example.demo.exercise.other;
 
-import com.example.demo.test.reflex.Person;
 import lombok.Data;
 
 import java.beans.BeanInfo;

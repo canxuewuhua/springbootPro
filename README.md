@@ -41,3 +41,17 @@
 
 # 依赖ResultUtils类，依赖CodeMsg类
 # 返回ResultUtils.success()或者是ResultUtils.fail
+
+# 三、redis的使用
+#    redis数据库在本地虚拟机上启动
+#    redis安装在 /usr/local/redis文件下 到bin目录下 启动 ./redis-server &
+    
+#    更改redis密码，使用命令  ./redis-cli (首先redis-server先要启动) 
+#    config set requirepass 1234
+
+#    使用redisdeskManager客户端连接redis数据库 命令keys *XX*  查找key为XX的数据缓存
+#   备注：linux上安装redis的推荐网址：https://www.cnblogs.com/wangchunniu1314/p/6339416.html
+
+# redis的使用配置 RedisConfig类， 项目一启动，就加载该类，包含一些redis数据库的连接信息
+# 还有有一个 RedisUtilService类，该类是操作RedisTemplate，进行key的添加，删除和获取缓存值
+# 在项目中使用RedisController作为入口进行redis使用的测试
