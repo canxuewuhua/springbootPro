@@ -193,4 +193,21 @@
       age = #{age,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!-- ***********自定义开始************* -->
+  <select id="selectMapByExample" parameterType="com.example.demo.domain.UserVOExample" resultType="java.util.HashMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <!-- ***********自定义结束************* -->
 </mapper>

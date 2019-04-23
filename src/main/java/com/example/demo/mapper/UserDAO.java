@@ -3,6 +3,8 @@ package com.example.demo.mapper;
 import com.example.demo.domain.UserVO;
 import com.example.demo.domain.UserVOExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface UserDAO {
@@ -27,4 +29,8 @@ public interface UserDAO {
     int updateByPrimaryKeySelective(UserVO record);
 
     int updateByPrimaryKey(UserVO record);
+
+    /************************自定义开始*************************/
+    List<Map<String,Object>> selectMapByExample(UserVOExample example);
+    /************************自定义结束*************************/
 }

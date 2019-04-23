@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.example.demo.domain.Customer;
+import com.example.demo.domain.UserVO;
+import com.example.demo.domain.UserVOExample;
 import com.example.demo.service.UserService;
 import com.example.demo.util.DateUtil;
 import com.example.demo.vo.BaseReturn;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ZHUYONGQIANG on 2018/5/26.
@@ -134,6 +138,26 @@ public class UserController {
         baseReturn.setData(customer);
         baseReturn.setUserFlag("UserId");
         log.info("Name:{},Address:{},UserId:{}", customer.getName(),customer.getAddress(),userId);
+        return baseReturn;
+    }
+
+    @RequestMapping(name = "POST请求", path = "/getUserList", method = RequestMethod.GET)
+    public BaseReturn getUserList(){
+        BaseReturn baseReturn = new BaseReturn();
+        List<UserVO> userVOS = userService.getUserList();
+        baseReturn.setData(userVOS);
+        baseReturn.setCode(10000);
+        baseReturn.setMsg("查询成功");
+        return baseReturn;
+    }
+
+    @RequestMapping(name = "POST请求", path = "/getListMapUser", method = RequestMethod.GET)
+    public BaseReturn getListMapUser(){
+        BaseReturn baseReturn = new BaseReturn();
+        List<Map<String,Object>> userVOS = userService.getListMapUser();
+        baseReturn.setData(userVOS);
+        baseReturn.setCode(10000);
+        baseReturn.setMsg("查询成功");
         return baseReturn;
     }
 }
