@@ -52,15 +52,19 @@ public class UserMockTest {
 	@Test
 	@Rollback()
 	public void addEmployeeTest() {
-		List<UserVO> employeeVOList = new ArrayList<>();
+		//List<UserVO> employeeVOList = new ArrayList<>();
 		UserVO userVO = new UserVO();
 		userVO.setId(10273140);
 		userVO.setName("zhangsangeng");
 		userVO.setAddress("北京大兴");
 		userVO.setAge(28);
-		employeeVOList.add(userVO);
+		//employeeVOList.add(userVO);
 
-		Mockito.when(userDAO.selectByExample(Mockito.anyObject())).thenReturn(employeeVOList);
+		//Mockito.when(userDAO.selectByExample(Mockito.anyObject())).thenReturn(employeeVOList);
+
+		//模拟方法调用的返回值
+		//使用anyObject()来匹配任意Object类型参数
+		Mockito.when(userDAO.selectByPrimaryKey(Mockito.anyObject())).thenReturn(userVO);
 
 		UserVO userVO1 = userNewService.getUserInfo(10273140);
 		String userName = userVO1.getName();
