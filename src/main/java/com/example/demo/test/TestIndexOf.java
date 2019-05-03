@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * @author yongqiang.zhu
  * @date 2019/5/2 13:09
+ * 获取在list<String>中，这个值的索引位置
  */
 public class TestIndexOf {
 	public static void main(String[] args) {

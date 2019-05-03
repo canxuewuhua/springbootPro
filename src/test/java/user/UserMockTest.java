@@ -1,11 +1,8 @@
 package user;
 
 import com.example.demo.SpringBootWildApplication;
-import com.example.demo.domain.EmployeeVO;
 import com.example.demo.domain.UserVO;
-import com.example.demo.mapper.EmployeeDAO;
 import com.example.demo.mapper.UserDAO;
-import com.example.demo.service.EmployeeService;
 import com.example.demo.service.UserNewService;
 import org.junit.After;
 import org.junit.Assert;
@@ -20,10 +17,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author yongqiang.zhu

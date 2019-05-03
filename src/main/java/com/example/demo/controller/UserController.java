@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import com.alibaba.fastjson.JSON;
 import com.example.demo.domain.Customer;
 import com.example.demo.domain.UserVO;
-import com.example.demo.domain.UserVOExample;
 import com.example.demo.service.UserService;
 import com.example.demo.util.DateUtil;
 import com.example.demo.vo.BaseReturn;

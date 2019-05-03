@@ -1,9 +1,7 @@
 package com.example.demo.test.transaction;
 
-import com.example.demo.service.EmployeeService;
-import com.example.demo.service.UserService;
+import com.example.demo.service.CityService;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,18 +13,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class TransactionTest {
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    private EmployeeService employeeService;
+    private CityService cityService;
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public boolean parent(){
         try {
             log.info("开始执行parent方法");
-            employeeService.updateEmployeeAgeById();
+            //cityService.updateCityName();
             log.info("更新完");
-            child();
+            //child();
             return true;
         } catch (Exception e) {
             return false;
@@ -36,7 +31,7 @@ public class TransactionTest {
     public boolean child(){
         int i =5;
         if (i/5 == 1){
-            employeeService.updateEmployeeSalaryById();
+            //cityService.updateCityName();
         }
         return true;
     }
