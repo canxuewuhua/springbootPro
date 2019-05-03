@@ -33,11 +33,11 @@ public class LambdaTest {
 //        printListDTOToMapKeyValue();
 //        printListDTOToListString();
 //        printUserCopyToStudent();
-//        printSortUserAge();
+        printSortUserAge();
 //        printFilterAndSortedAndMap();
 //        printListAgeToCount();
 //        printGroupByUserProperties();
-          printGroupByMapping();
+//          printGroupByMapping();
     }
 
     /**
