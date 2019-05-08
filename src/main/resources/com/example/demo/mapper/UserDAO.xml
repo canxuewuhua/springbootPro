@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.UserDAO">
   <resultMap id="BaseResultMap" type="com.example.demo.domain.UserVO">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="age" jdbcType="INTEGER" property="age" />
+    <id column="st_id" jdbcType="INTEGER" property="stId" />
+    <result column="st_name" jdbcType="VARCHAR" property="stName" />
+    <result column="st_address" jdbcType="VARCHAR" property="stAddress" />
+    <result column="st_age" jdbcType="INTEGER" property="stAge" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, address, age
+    st_id, st_name, st_address, st_age
   </sql>
   <select id="selectByExample" parameterType="com.example.demo.domain.UserVOExample" resultMap="BaseResultMap">
     select
@@ -86,11 +86,11 @@
     select 
     <include refid="Base_Column_List" />
     from user
-    where id = #{id,jdbcType=INTEGER}
+    where st_id = #{stId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
-    where id = #{id,jdbcType=INTEGER}
+    where st_id = #{stId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.example.demo.domain.UserVOExample">
     delete from user
@@ -99,39 +99,39 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.demo.domain.UserVO">
-    insert into user (id, name, address, 
-      age)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{age,jdbcType=INTEGER})
+    insert into user (st_id, st_name, st_address, 
+      st_age)
+    values (#{stId,jdbcType=INTEGER}, #{stName,jdbcType=VARCHAR}, #{stAddress,jdbcType=VARCHAR}, 
+      #{stAge,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.domain.UserVO">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
+      <if test="stId != null">
+        st_id,
       </if>
-      <if test="name != null">
-        name,
+      <if test="stName != null">
+        st_name,
       </if>
-      <if test="address != null">
-        address,
+      <if test="stAddress != null">
+        st_address,
       </if>
-      <if test="age != null">
-        age,
+      <if test="stAge != null">
+        st_age,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
+      <if test="stId != null">
+        #{stId,jdbcType=INTEGER},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="stName != null">
+        #{stName,jdbcType=VARCHAR},
       </if>
-      <if test="address != null">
-        #{address,jdbcType=VARCHAR},
+      <if test="stAddress != null">
+        #{stAddress,jdbcType=VARCHAR},
       </if>
-      <if test="age != null">
-        #{age,jdbcType=INTEGER},
+      <if test="stAge != null">
+        #{stAge,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -144,17 +144,17 @@
   <update id="updateByExampleSelective" parameterType="map">
     update user
     <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
+      <if test="record.stId != null">
+        st_id = #{record.stId,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.stName != null">
+        st_name = #{record.stName,jdbcType=VARCHAR},
       </if>
-      <if test="record.address != null">
-        address = #{record.address,jdbcType=VARCHAR},
+      <if test="record.stAddress != null">
+        st_address = #{record.stAddress,jdbcType=VARCHAR},
       </if>
-      <if test="record.age != null">
-        age = #{record.age,jdbcType=INTEGER},
+      <if test="record.stAge != null">
+        st_age = #{record.stAge,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -163,10 +163,10 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update user
-    set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      address = #{record.address,jdbcType=VARCHAR},
-      age = #{record.age,jdbcType=INTEGER}
+    set st_id = #{record.stId,jdbcType=INTEGER},
+      st_name = #{record.stName,jdbcType=VARCHAR},
+      st_address = #{record.stAddress,jdbcType=VARCHAR},
+      st_age = #{record.stAge,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -174,33 +174,37 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.domain.UserVO">
     update user
     <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+      <if test="stName != null">
+        st_name = #{stName,jdbcType=VARCHAR},
       </if>
-      <if test="address != null">
-        address = #{address,jdbcType=VARCHAR},
+      <if test="stAddress != null">
+        st_address = #{stAddress,jdbcType=VARCHAR},
       </if>
-      <if test="age != null">
-        age = #{age,jdbcType=INTEGER},
+      <if test="stAge != null">
+        st_age = #{stAge,jdbcType=INTEGER},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where st_id = #{stId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.demo.domain.UserVO">
     update user
-    set name = #{name,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
-      age = #{age,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
+    set st_name = #{stName,jdbcType=VARCHAR},
+      st_address = #{stAddress,jdbcType=VARCHAR},
+      st_age = #{stAge,jdbcType=INTEGER}
+    where st_id = #{stId,jdbcType=INTEGER}
   </update>
 
   <!-- ***********自定义开始************* -->
-  <select id="selectMapByExample" parameterType="com.example.demo.domain.UserVOExample" resultType="java.util.HashMap">
+  <sql id="Base_Column_List_New">
+    st_id as stId, st_name as stName, st_address as stAddress, st_age as stAge
+  </sql>
+
+  <select id="selectMapByExample" parameterType="com.example.demo.domain.UserVOExample" resultType="java.util.Map">
     select
     <if test="distinct">
       distinct
     </if>
-    <include refid="Base_Column_List" />
+    <include refid="Base_Column_List_New" />
     from user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

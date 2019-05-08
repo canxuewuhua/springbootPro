@@ -43,6 +43,8 @@ public class UserServiceImpl implements UserService{
     @Override
     public List<Map<String, Object>> getListMapUser() {
         UserVOExample userVOExample = new UserVOExample();
+        UserVOExample.Criteria criteria = userVOExample.createCriteria();
+        criteria.andStNameEqualTo("lisi");
         List<Map<String,Object>> userList = userDAO.selectMapByExample(userVOExample);
         return userList;
     }

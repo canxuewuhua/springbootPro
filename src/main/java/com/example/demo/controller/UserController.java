@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.alibaba.fastjson.JSON;
 import com.example.demo.domain.Customer;
 import com.example.demo.domain.UserVO;
+import com.example.demo.dto.PsersonRequestDTO;
 import com.example.demo.service.UserService;
 import com.example.demo.util.DateUtil;
 import com.example.demo.vo.BaseReturn;
@@ -157,6 +158,26 @@ public class UserController {
         baseReturn.setData(userVOS);
         baseReturn.setCode(10000);
         baseReturn.setMsg("查询成功");
+        return baseReturn;
+    }
+
+    @RequestMapping(name = "POST请求", path = "/getPersonByDateAndName", method = RequestMethod.POST)
+    public BaseReturn getPersonByDateAndName(@RequestBody(required = false) PsersonRequestDTO psersonRequestDTO){
+        Date date = psersonRequestDTO.getDate();
+        String name = psersonRequestDTO.getName();
+        BaseReturn baseReturn = new BaseReturn();
+        baseReturn.setCode(20101);
+        baseReturn.setMsg("SUCCESS");
+        Customer customer = new Customer();
+        customer.setId(1001);
+        customer.setName("张三丰");
+        customer.setAddress("河北石家庄");
+        customer.setCount(1);
+        baseReturn.setData(customer);
+        baseReturn.setUserFlag("UserId");
+        Date curDate = new Date();
+        log.info("getPersonByDateAndName方法：打印传入的date时间：{}，建金中心，姓名：{}", date, name);
+        log.info("打印当前系统的时间：{}", curDate);
         return baseReturn;
     }
 }

@@ -1,43 +1,43 @@
 package com.example.demo.domain;
 
 public class UserVO {
-    private Integer id;
+    private Integer stId;
 
-    private String name;
+    private String stName;
 
-    private String address;
+    private String stAddress;
 
-    private Integer age;
+    private Integer stAge;
 
-    public Integer getId() {
-        return id;
+    public Integer getStId() {
+        return stId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setStId(Integer stId) {
+        this.stId = stId;
     }
 
-    public String getName() {
-        return name;
+    public String getStName() {
+        return stName;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setStName(String stName) {
+        this.stName = stName == null ? null : stName.trim();
     }
 
-    public String getAddress() {
-        return address;
+    public String getStAddress() {
+        return stAddress;
     }
 
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+    public void setStAddress(String stAddress) {
+        this.stAddress = stAddress == null ? null : stAddress.trim();
     }
 
-    public Integer getAge() {
-        return age;
+    public Integer getStAge() {
+        return stAge;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setStAge(Integer stAge) {
+        this.stAge = stAge;
     }
 }

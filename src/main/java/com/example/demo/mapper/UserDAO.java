@@ -12,7 +12,7 @@ public interface UserDAO {
 
     int deleteByExample(UserVOExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer stId);
 
     int insert(UserVO record);
 
@@ -20,7 +20,7 @@ public interface UserDAO {
 
     List<UserVO> selectByExample(UserVOExample example);
 
-    UserVO selectByPrimaryKey(Integer id);
+    UserVO selectByPrimaryKey(Integer stId);
 
     int updateByExampleSelective(@Param("record") UserVO record, @Param("example") UserVOExample example);
 
@@ -29,8 +29,6 @@ public interface UserDAO {
     int updateByPrimaryKeySelective(UserVO record);
 
     int updateByPrimaryKey(UserVO record);
-
     /************************自定义开始*************************/
     List<Map<String,Object>> selectMapByExample(UserVOExample example);
-    /************************自定义结束*************************/
-}
+    /************************自定义结束*************************/}
