@@ -77,3 +77,11 @@
 #    异常一直向上抛，A，B都不会提交。  现实的情况是有大批量的for循环，我们不能让它抛出异常，且要让它有异常的回滚（这才是问题）
 #    疑问：如果for循环，内层事务抛错了，需要内层，外层也回滚，但是不能影响到for循环下一条的执行，怎么做
 #     参考https://my.oschina.net/zjllovecode/blog/1863103
+
+# 五 关于xxl-job传入时间的问题
+#  linux上传入的时间是GTC时间，也即时间标准时间，比中国时间晚了8个小时
+#  所以传入的GTC时间，我们的Java项目接收json数据时间会转化为当前的CST时间，即中国时区时间
+#  如果在xxl-job 上要需要获取昨天的GTC时间的话，需 cur_date=`date -d yesterday -u  "+%Y-%m-%dT%H:%M:%SZ"` 
+#  示例   xxl上记录的时间 当前日期 2019-05-07T16:02:52Z
+#        getPersonByDateAndName方法：打印传入的date时间：Wed May 08 00:02:52 CST 2019，建金中心，姓名：wangxiaomei
+#       打印当前系统的时间：Thu May 09 00:02:52 CST 2019
