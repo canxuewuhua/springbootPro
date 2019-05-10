@@ -85,3 +85,7 @@
 #  示例   xxl上记录的时间 当前日期 2019-05-07T16:02:52Z
 #        getPersonByDateAndName方法：打印传入的date时间：Wed May 08 00:02:52 CST 2019，建金中心，姓名：wangxiaomei
 #       打印当前系统的时间：Thu May 09 00:02:52 CST 2019
+
+# 六 ftp数据的上传和下载，可以使用FTPUtil,其中搭建ftp服务，可以在linux系统上搭建，搭建流程可参考
+#    ftp服务在centos7上搭建流程  https://www.cnblogs.com/zhuozhang/articles/7856723.html
+#    ftp的上传和下载可参考网址https://blog.csdn.net/qq_38380025/article/details/80679128  和 https://blog.csdn.net/rodge_rom/article/details/78888541
