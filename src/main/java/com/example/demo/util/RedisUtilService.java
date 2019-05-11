@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 金山redis工具类
+ * redis工具类
  */
 @Service
 @Slf4j
