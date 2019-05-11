@@ -89,3 +89,16 @@
 # 六 ftp数据的上传和下载，可以使用FTPUtil,其中搭建ftp服务，可以在linux系统上搭建，搭建流程可参考
 #    ftp服务在centos7上搭建流程  https://www.cnblogs.com/zhuozhang/articles/7856723.html
 #    ftp的上传和下载可参考网址https://blog.csdn.net/qq_38380025/article/details/80679128  和 https://blog.csdn.net/rodge_rom/article/details/78888541
+
+# 七 redis锁的应用
+# 参考逾期跑批时加入redis锁，防止重复跑批
+
+# 八 twitter的雪花算法
+#    雪花算法产生的字符串的长度为18位，按递增，每秒可产生26万个不重复的ID
+#
+#     UUID是由一组32位数的16进制数字所构成，如550e8400-e29b-41d4-a716-446655440000
+#     每秒产生10亿笔UUID，100年后只产生一次重复的机率是50%。如果地球上每个人都各有6亿笔GUID，发生一次重复的机率是50%。产生重复GUID并造成错误的情况非常低
+#     UUID的唯一缺陷在于生成的结果串会比较长
+
+#     自增ID：对于数据敏感场景不宜使用，且不适合于分布式场景。
+#     GUID：采用无意义字符串，数据量增大时造成访问过慢，且不宜排序。
