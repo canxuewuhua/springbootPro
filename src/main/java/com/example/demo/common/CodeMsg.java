@@ -9,7 +9,9 @@ public enum CodeMsg {
      */
     // 全局错误码
     SYSTEM_REQUEST_SUCCESS(100000, "系统请求成功"),
-    SYSTEM_REQUEST_FAIL(200000, "系统请求失败");
+    SYSTEM_REQUEST_FAIL(200000, "系统请求失败"),
+
+    OVERDUE_BATCH_RUN_LOCKING(201001, "逾期跑批锁定中");
 
 
 
