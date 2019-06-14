@@ -102,3 +102,14 @@
 
 #     自增ID：对于数据敏感场景不宜使用，且不适合于分布式场景。
 #     GUID：采用无意义字符串，数据量增大时造成访问过慢，且不宜排序。
+
+# 九 RabbitMQ之消息确认
+#    参考https://www.cnblogs.com/wuzhiyuan/p/6862036.html
+#    channel.basicAck(message.getMessageProperties().getDeliveryTag(), false); // false只确认当前一个消息收到，true确认所有consumer获得的消息
+#    注：做过的项目使用的是这种方式
+
+#    System.out.println("消息已重复处理失败,拒绝再次接收...");
+#    channel.basicReject(message.getMessageProperties().getDeliveryTag(), true); // 拒绝消息
+
+#    System.out.println("消息即将再次返回队列处理...");
+#    channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, true); // requeue为是否重新回到队列
