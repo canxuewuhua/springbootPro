@@ -15,10 +15,10 @@ import javax.annotation.PostConstruct;
 @Slf4j
 public class FTPConfig {
 
-    @Value("${keyCenter.config.path}")
+    //@Value("${keyCenter.config.path}")
     private String keyCenterPath;
 
-    @Value("${account.bestpay.ftp.connect}")
+    //@Value("${account.bestpay.ftp.connect}")
     private String bestpayFTPConnectInfo;
 
     public String hostName;
