@@ -18,6 +18,7 @@ import java.util.Date;
 public class DateUtil {
 
     public static final String FORMAT_PATTERN_TIME = "yyyy-MM-dd HH:mm:ss";
+    public static final String FORMAT_PATTERN_TIME2 = "yyyy-MM-dd HH:mm:ss.SSS";
     public static final String FORMAT_PATTERN_DAY = "yyyy-MM-dd";
     public static final String FORMAT_PATTERN_MONTH = "yyyy-MM";
     public static final String FORMAT_PATTERN_TIME_TOGETHER = "yyyyMMddHHmmssSSS";
@@ -333,6 +334,37 @@ public class DateUtil {
             log.error("时间比较出现异常,异常信息:{},currDatetime1:{},currDatetime2:{}", e.getMessage(), currDatetime1, currDatetime2);
         }
         return flag;
+    }
+
+    public static Long getDatePoor(Date endDate, Date nowDate) {
+
+        long nd = 1000 * 24 * 60 * 60;
+        long nh = 1000 * 60 * 60;
+        long nm = 1000 * 60;
+         long ns = 1000;
+        // 获得两个时间的毫秒时间差异
+        long diff = endDate.getTime() - nowDate.getTime();
+        // 计算差多少天
+        long day = diff / nd;
+        // 计算差多少小时
+        long hour = diff % nd / nh;
+        // 计算差多少分钟
+        long min = diff % nd % nh / nm;
+        // 计算差多少秒//输出结果
+         long sec = diff % nd % nh % nm / ns;
+        //return day + "天" + hour + "小时" + min + "分钟";
+        return min*60 + sec;
+    }
+
+    public static Long getMillisecond(Date startDate, Date endDate) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(startDate);
+        long start = calendar.getTimeInMillis();
+        calendar.setTime(endDate);
+        long end = calendar.getTimeInMillis();
+        // 获得两个时间的毫秒时间差异
+        long diff = end - start;
+        return diff;
     }
 
 }
