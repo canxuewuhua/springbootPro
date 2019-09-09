@@ -72,7 +72,7 @@ public class FilterListMap {
 			// 拿createTime和基准时间进行对比
 			// 时间间隔
 			long timeInterval = Math.abs(DateUtil.getMillisecond(benchmarkTime, createTime));
-			if (timeInterval-300000l <= 0){
+			if (timeInterval-300000L <= 0){
 
 				// 此时时间是小于五分钟内，看用户id是否重复
 				// 重复的用户id不计入过滤后的listMap
