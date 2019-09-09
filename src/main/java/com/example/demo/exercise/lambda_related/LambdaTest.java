@@ -33,11 +33,12 @@ public class LambdaTest {
 //        printListDTOToMapKeyValue();
 //        printListDTOToListString();
 //        printUserCopyToStudent();
-        printSortUserAge();
+//        printSortUserAge();
 //        printFilterAndSortedAndMap();
 //        printListAgeToCount();
 //        printGroupByUserProperties();
 //          printGroupByMapping();
+        printGroupByMoreElements();
     }
 
     /**
@@ -234,6 +235,35 @@ public class LambdaTest {
         // DOTO("待处理")
         Map<String, Set<String>> collectMap = list1.stream().collect(Collectors.groupingBy(n -> n.getIdentyID(), Collectors.mapping(m -> m.getUserName(), Collectors.toSet())));
         System.out.println(collectMap);
+    }
+
+    /**
+     *  根据年龄分组，根据姓名计数
+     */
+    public static void printGroupByMoreElements(){
+        // user集合
+        List<User> userList= Arrays.asList(
+                new User("zhangsan",18,"4128195"),new User("lixiaomin",29,"4128196"),new User("lixiaomin2",29,"4128196"));
+
+        // 根据客户年龄进行分组 18、29、30
+        // 根据年龄分组，根据姓名计数
+//        Map<Integer,Long> result2=userList.stream().collect(Collectors.groupingBy(User::getAge, Collectors.counting()));
+//        System.out.println(result2);
+        //Map<Integer, List<User>> countMap = userList.stream().collect(Collectors.groupingBy(o -> o.getAge()));
+
+        Map<Integer, Map<String, Long>> caseTotal = userList.stream().collect(Collectors.groupingBy(User::getAge, Collectors.groupingBy(User::getUserName, Collectors.counting())));
+        System.out.println(caseTotal);
+
+        // 定义一个listMap
+        List<Map<String,Object>> mapList = new ArrayList<>();
+        // 1. entrySet遍历，在键和值都需要时使用（最常用）
+        for (Map.Entry<Integer, Map<String, Long>> entry : caseTotal.entrySet()) {
+            String entryKey = entry.getKey().toString();
+            Map<String, Long> map = entry.getValue();
+            //long count = map.
+
+        }
+
     }
 }
 @Data
