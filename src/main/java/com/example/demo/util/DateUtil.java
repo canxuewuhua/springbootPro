@@ -356,6 +356,12 @@ public class DateUtil {
         return min*60 + sec;
     }
 
+    /**
+     *  计算两个时间的相隔毫秒数
+     * @param startDate
+     * @param endDate
+     * @return
+     */
     public static Long getMillisecond(Date startDate, Date endDate) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(startDate);
@@ -367,4 +373,19 @@ public class DateUtil {
         return diff;
     }
 
+    /**
+     *  比较两个时间的时间差
+     */
+    public static void GetTimeInterval(){
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+        Date parse = DateUtil.parseDate("2019-08-29 17:20:18.168", DateUtil.FORMAT_PATTERN_TIME);
+        Date date  = DateUtil.parseDate("2019-08-29 17:26:12.168", DateUtil.FORMAT_PATTERN_TIME);
+        long between = date.getTime() - parse.getTime();
+        long day = between / (24 * 60 * 60 * 1000);
+        long hour = (between / (60 * 60 * 1000) - day * 24);
+        long min = ((between / (60 * 1000)) - day * 24 * 60 - hour * 60);
+        long s = (between / 1000 - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
+        System.out.println(day + "天" + hour + "小时" + min + "分" + s + "秒");
+        System.out.println("相差"+min+"分钟");
+    }
 }
