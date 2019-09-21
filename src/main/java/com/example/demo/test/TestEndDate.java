@@ -7,6 +7,8 @@ import java.util.Date;
 public class TestEndDate {
     public static void main(String[] args) {
 /**
+ *    解法：将当前日期年-月-日  加上  21:30:00
+ *    与当前时间年-月-日-时-分-秒 进行比较
  *   与某个时间进行相比
  *   2019-05-03
      2019-05-03 09:06:49
@@ -16,7 +18,7 @@ public class TestEndDate {
         Date currentTimeTemp = new Date();
         String currentTimeFormatYYMMDD = DateUtil.formatDate(currentTimeTemp, DateUtil.FORMAT_PATTERN_DAY);
         String currentTimeFormatTime = DateUtil.formatDate(currentTimeTemp, DateUtil.FORMAT_PATTERN_TIME);
-        String limitedTimeMinTemp = currentTimeFormatYYMMDD + " 21:30:00";
+        String limitedTimeMinTemp = currentTimeFormatYYMMDD + "21:30:00";
         System.out.println(currentTimeFormatYYMMDD);
         System.out.println(currentTimeFormatTime);
         System.out.println(limitedTimeMinTemp);
