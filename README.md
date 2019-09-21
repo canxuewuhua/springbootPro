@@ -1,6 +1,6 @@
 # springbootPro
 
-# **一、aop中执行顺序**
+一、aop中执行顺序
 # @Pointcut定义切点
                               ③
                     @Before   → @Method
@@ -27,7 +27,7 @@
 # newInstance()：通过类的不带参数的构造方法创建这个类的一个对象
 
 
-# **二、swagger的使用**
+二、swagger的使用
 
 # 首先引入两个依赖 springfox-swagger2 和 springfox-swagger-ui
 # @Api 作用在类上，说明该类的作用 ，其中tags和description会显示在swagger的管理页面上
@@ -37,7 +37,7 @@
 
 # swagger的访问路径为 http://localhost:8045/swagger-ui.html#
 
-# **三、ResultDTO的使用**
+三、ResultDTO的使用
 
 # 依赖ResultUtils类，依赖CodeMsg类
 # 返回ResultUtils.success()或者是ResultUtils.fail
@@ -56,7 +56,7 @@
 # 还有有一个 RedisUtilService类，该类是操作RedisTemplate，进行key的添加，删除和获取缓存值
 # 在项目中使用RedisController作为入口进行redis使用的测试
 
-# **四 spring事务**
+四 spring事务
 # 1、要想事务起作用，必须是主方法名上有@Transactional注解，方法体内不能用try catch；如果要用，则catch中必须用throw new Exception
 # 2、只有来自外部的方法调用才会把AOP代理捕捉，类内部方法嗲用类内部的其他方法，子方法并不会引起事务行为，即使被调用的方法上使用有@Transactional注解
 
@@ -78,7 +78,7 @@
 #    疑问：如果for循环，内层事务抛错了，需要内层，外层也回滚，但是不能影响到for循环下一条的执行，怎么做
 #     参考https://my.oschina.net/zjllovecode/blog/1863103
 
-# 五 关于xxl-job传入时间的问题
+五 关于xxl-job传入时间的问题
 #  linux上传入的时间是GTC时间，也即时间标准时间，比中国时间晚了8个小时
 #  所以传入的GTC时间，我们的Java项目接收json数据时间会转化为当前的CST时间，即中国时区时间
 #  如果在xxl-job 上要需要获取昨天的GTC时间的话，需 cur_date=`date -d yesterday -u  "+%Y-%m-%dT%H:%M:%SZ"` 
@@ -86,14 +86,14 @@
 #        getPersonByDateAndName方法：打印传入的date时间：Wed May 08 00:02:52 CST 2019，建金中心，姓名：wangxiaomei
 #       打印当前系统的时间：Thu May 09 00:02:52 CST 2019
 
-# 六 ftp数据的上传和下载，可以使用FTPUtil,其中搭建ftp服务，可以在linux系统上搭建，搭建流程可参考
+六 ftp数据的上传和下载，可以使用FTPUtil,其中搭建ftp服务，可以在linux系统上搭建，搭建流程可参考
 #    ftp服务在centos7上搭建流程  https://www.cnblogs.com/zhuozhang/articles/7856723.html
 #    ftp的上传和下载可参考网址https://blog.csdn.net/qq_38380025/article/details/80679128  和 https://blog.csdn.net/rodge_rom/article/details/78888541
 
-# 七 redis锁的应用
+七 redis锁的应用
 # 参考逾期跑批时加入redis锁，防止重复跑批
 
-# 八 twitter的雪花算法
+八 twitter的雪花算法
 #    雪花算法产生的字符串的长度为18位，按递增，每秒可产生26万个不重复的ID
 #
 #     UUID是由一组32位数的16进制数字所构成，如550e8400-e29b-41d4-a716-446655440000
@@ -103,7 +103,7 @@
 #     自增ID：对于数据敏感场景不宜使用，且不适合于分布式场景。
 #     GUID：采用无意义字符串，数据量增大时造成访问过慢，且不宜排序。
 
-# 九 RabbitMQ之消息确认
+九 RabbitMQ之消息确认
 #    参考https://www.cnblogs.com/wuzhiyuan/p/6862036.html
 #    channel.basicAck(message.getMessageProperties().getDeliveryTag(), false); // false只确认当前一个消息收到，true确认所有consumer获得的消息
 #    注：做过的项目使用的是这种方式
@@ -113,3 +113,7 @@
 
 #    System.out.println("消息即将再次返回队列处理...");
 #    channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, true); // requeue为是否重新回到队列
+
+十 内存和cpu的关系
+# CPU是负责运算和处理的，内存是交换数据的
+# 当程序或者操作者对CPU发出指令，这些指令和数据暂存在内存里，在CPU空闲时传送给CPU，CPU处理后把结果输出到输出设备上，输出设备就是显示器，打印机等。
