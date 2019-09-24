@@ -16,16 +16,14 @@ import java.io.IOException;
 public class RabbitMqReceiveService {
 
 	@Autowired
-	private RabbitMqUtilService rabbitMqUtilService;
-	@Autowired
 	private ReceivedHandlerService receivedHandlerService;
 
 	/**
 	 * 监听器监听指定的Queue获取消息
 	 * 注：没有测试MQ，所以在此注释了注解
 	 */
-//	@RabbitListener(queues = "${rabbitmq.queue.name.repayment}")
-//	@RabbitHandler
+	@RabbitListener(queues = "${rabbitmq.queue.name.repayment}")
+	@RabbitHandler
 	public void receiveAccrualRevenueReportMessage1(String userId, Channel channel, Message message) throws IOException {
 		log.info("第一个消费者执行权责发生制报表添加处理，对应的参数信息：{}", userId);
 		consumerMessage(userId);
