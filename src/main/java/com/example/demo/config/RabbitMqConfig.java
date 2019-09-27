@@ -45,6 +45,7 @@ public class RabbitMqConfig implements RabbitTemplate.ReturnCallback {
         connectionFactory.setPassword("123456");
         //connectionFactory.setPassword("pvf6ujK7AJkmeVIN");
         connectionFactory.setPublisherConfirms(true);
+        //connectionFactory.setVirtualHost();
 
         log.info("rabbitMQ初始化成功");
         return connectionFactory;
