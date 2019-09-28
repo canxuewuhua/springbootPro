@@ -23,7 +23,7 @@ public class RabbitMQController {
 	public void sayMess() throws InterruptedException {
 		//String userId = "chuangzao101";
 		//log.info("MQController的sayMessage：{}", userId);
-		for (int i=0;i<5000;i++){
+		for (int i=0;i<500;i++){
 			String userId = SerialNumberUtil.getPrimaryId();
 			log.info("MQController的sayMessage生成的第：{}个userId{}", i, userId);
 			Thread.sleep(100);

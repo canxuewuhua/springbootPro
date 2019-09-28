@@ -24,9 +24,10 @@ public class RabbitMqReceiveService {
 	 */
 	@RabbitListener(queues = "${rabbitmq.queue.name.repayment}")
 	@RabbitHandler
-	public void receiveAccrualRevenueReportMessage1(String userId, Channel channel, Message message) throws IOException {
+	public void receiveAccrualRevenueReportMessage1(String userId, Channel channel, Message message) throws IOException, InterruptedException {
 		log.info("第一个消费者执行权责发生制报表添加处理，对应的参数信息：{}", userId);
 		consumerMessage(userId);
+		Thread.sleep(1000);
 		channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
 	}
 
