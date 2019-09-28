@@ -14,8 +14,8 @@ import org.springframework.context.annotation.Configuration;
 /**
  * 如果没有测试MQ，将该处的注解注掉，防止程序去连接rabbitMQ
  */
-@Configuration
-@EnableCaching
+//@Configuration
+//@EnableCaching
 @Slf4j
 public class RabbitMqConfig implements RabbitTemplate.ReturnCallback {
 
