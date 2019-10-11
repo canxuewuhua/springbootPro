@@ -1,11 +1,18 @@
 # 罗列这个项目中的练习知识点20190929-至今
 
- 1、在springboot中，如何干掉if else!
+ 一、在springboot中，如何干掉if else!
  # src\main\java\com\example\demo\exercise\delete_if_else
  # 利利用策略模式简化过多的if else代码
  # 原文参考 https://juejin.im/post/5c551122e51d457fcc5a9790
  
- 2、逾期情况下，还款计划中期数最小的一期的逾期天数
+ 二、逾期情况下，还款计划中期数最小的一期的逾期天数
  # src\main\java\com\example\demo\test\InoutPlanMinOverdueDay.java
  # 逾期三期，逾期期数最小的是第一期，且逾期天数最大为62天
  # 同理使用lambda表达式也可以
+ 
+ 三、自定义注解
+ # src\main\java\com\example\demo\knowledge\zidingyi_interface\controller\ReportInoutPlanAOPController.java
+ # 以加密形式存储到数据库中
+ # 以解密方式从数据库中取出
+ # 本例使用将客户姓名使用AES进行加密存储到数据库中，从数据库中使用AES解密从数据库中取出解密后的客户姓名
+ # 注：数据库中存储的是加密后的数据，存储的是密文数据，但是取出来是通过AES解密后的明文数据

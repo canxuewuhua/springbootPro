@@ -135,13 +135,6 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
 		</dependency>
-
-		<!-- 开源类扫描器工具class-scanner -->
-		<dependency>
-			<groupId>org.cent</groupId>
-			<artifactId>scanner-core</artifactId>
-			<version>1.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 
 	<build>

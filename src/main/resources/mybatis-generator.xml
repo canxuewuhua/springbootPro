@@ -42,6 +42,6 @@
 
         <!--生成对应表及类名-->
         <!--<table tableNauseroyee" mapperName="EmployeeDAO" domainObjectName="EmployeeVO"></table>-->
-        <table tableName="city" mapperName="CityDAO" domainObjectName="CityVO"></table>
+        <table tableName="lns_report_inout_plan" mapperName="ReportInoutPlanDAO" domainObjectName="ReportInoutPlanVO"></table>
     </context>
 </generatorConfiguration>
