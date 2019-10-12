@@ -57,8 +57,8 @@ public class RedisConfig extends CachingConfigurerSupport {
 //        KeyCenterRedisConfigDTO keyCenterRedisConfigDTO = JSONObject.parseObject(response, KeyCenterRedisConfigDTO.class);
 
         factory.setHostName("192.168.199.239");
-        factory.setDatabase(2);
-        factory.setPassword("1234");
+        factory.setDatabase(0);
+        factory.setPassword("123456");
         factory.setPort(6379);
         factory.setTimeout(REDIS_POOL_TIMEOUT);
         JedisPoolConfig config = new JedisPoolConfig();

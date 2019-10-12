@@ -16,3 +16,10 @@
  # 以解密方式从数据库中取出
  # 本例使用将客户姓名使用AES进行加密存储到数据库中，从数据库中使用AES解密从数据库中取出解密后的客户姓名
  # 注：数据库中存储的是加密后的数据，存储的是密文数据，但是取出来是通过AES解密后的明文数据
+ 
+ 四、Redis: lua脚本支持以及抢红包案例的简单实现
+ # src\main\java\com\example\demo\test\redis_grab_red_packet\RedisLuaDemo.java
+ # 参考网址：https://blog.csdn.net/hanchao5272/article/details/99868549
+ # 首先要连接redis，启动redis
+ # 在/usr/local/redis/bin的安装目录下./redis-server，启动redis
+ # 启动./redis-cli下 可以修改密码  127.0.0.1:6379> config set requirepass 123456，之后OK，代表新密码设置成功
