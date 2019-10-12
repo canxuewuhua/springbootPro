@@ -23,3 +23,6 @@
  # 首先要连接redis，启动redis
  # 在/usr/local/redis/bin的安装目录下./redis-server，启动redis
  # 启动./redis-cli下 可以修改密码  127.0.0.1:6379> config set requirepass 123456，之后OK，代表新密码设置成功
+ 
+ #注：再次参考https://blog.csdn.net/weixin_43936628/article/details/86511583
+ #    提供另一思路
