@@ -11,7 +11,9 @@ public enum CodeMsg {
     SYSTEM_REQUEST_SUCCESS(100000, "系统请求成功"),
     SYSTEM_REQUEST_FAIL(200000, "系统请求失败"),
 
-    OVERDUE_BATCH_RUN_LOCKING(201001, "逾期跑批锁定中");
+    OVERDUE_BATCH_RUN_LOCKING(201001, "逾期跑批锁定中"),
+
+    QUERY_PARTNER_SERVICE_FAILURE(300001, "商户标准为空，获取业务层数据失败");
 
 
 

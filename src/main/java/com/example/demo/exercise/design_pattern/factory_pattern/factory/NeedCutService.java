@@ -1,4 +1,4 @@
-package com.example.demo.exercise.design_pattern.factory;
+package com.example.demo.exercise.design_pattern.factory_pattern.factory;
 
 /**
  * @author yongqiang.zhu
