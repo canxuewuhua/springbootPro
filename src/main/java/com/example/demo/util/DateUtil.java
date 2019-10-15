@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 @Component
 @Slf4j
@@ -387,5 +388,95 @@ public class DateUtil {
         long s = (between / 1000 - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
         System.out.println(day + "天" + hour + "小时" + min + "分" + s + "秒");
         System.out.println("相差"+min+"分钟");
+    }
+
+    /**
+     * 当月最后一天
+     * @return
+     */
+    public static String getLastDay(){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar = Calendar.getInstance();
+        // 加一个月
+        calendar.add(Calendar.MONTH, 1);
+        // 设置为该月第一天
+        calendar.set(Calendar.DATE, 1);
+        // 再减一天即为上个月最后一天
+        calendar.add(Calendar.DATE, -1);
+        String day_last = df.format(calendar.getTime());
+        return day_last;
+    }
+
+    /**
+     * 当月第一天
+     * @return
+     */
+    public static String getFirstDay() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar = Calendar.getInstance();
+        Date theDate = calendar.getTime();
+
+        GregorianCalendar gcLast = (GregorianCalendar) Calendar.getInstance();
+        gcLast.setTime(theDate);
+        gcLast.set(Calendar.DAY_OF_MONTH, 1);
+        String day_first = df.format(gcLast.getTime());
+        return day_first;
+    }
+
+    /**
+     *
+     * 描述:获取下一个月的第一天.
+     *
+     * @return
+     */
+    public static String getPerFirstDayOfMonth(String yearMonth) {
+        SimpleDateFormat dft = new SimpleDateFormat("yyyy-MM-dd ");
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, Integer.valueOf(yearMonth.substring(0,4)));
+        calendar.set(Calendar.MONTH, Integer.valueOf(yearMonth.substring(5,7))-1);
+        calendar.add(Calendar.MONTH, 1);
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+        return dft.format(calendar.getTime());
+    }
+
+    /**
+     * 获取当月最后一天
+     * @param yearMonth
+     * @return
+     */
+    public static String getLastDayOfMonth(String yearMonth) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, Integer.valueOf(yearMonth.substring(0,4)));
+        cal.set(Calendar.MONTH, Integer.valueOf(yearMonth.substring(5,7))-1);
+        cal.set(Calendar.DAY_OF_MONTH,cal.getActualMaximum(Calendar.DATE));
+        return  new   SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
+    }
+
+    /**
+     * 获取当月第一天
+     * @param yearMonth
+     * @return
+     */
+    public static String getFirstDayOfMonth(String yearMonth) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, Integer.valueOf(yearMonth.substring(0,4)));
+        cal.set(Calendar.MONTH,Integer.valueOf(yearMonth.substring(5,7))-1);
+        cal.set(Calendar.DAY_OF_MONTH,cal.getMinimum(Calendar.DATE));
+        return   new   SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
+    }
+
+    /**
+     * 把时间字符串转化为时间戳
+     * @param time
+     */
+    public static long getTimeStamp(String time) throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        long timeStamp = simpleDateFormat.parse(time).getTime()/1000;
+        return timeStamp;
+    }
+
+    public static void main(String[] args) throws ParseException {
+        System.out.println(getPerFirstDayOfMonth("2017-09")+"00:00:00");
+        System.out.println(getTimeStamp(getLastDayOfMonth("2017-09")+"00:00:00")*1000000000);
     }
 }

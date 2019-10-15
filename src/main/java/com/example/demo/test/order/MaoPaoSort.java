@@ -6,8 +6,17 @@ package com.example.demo.test.order;
  */
 public class MaoPaoSort {
 	public static void main(String[] args) {
-		int [] arr = {4,10,21,41,5,3,12,9};
-		maopao(arr);
+//		int [] arr = {4,10,21,41,5,3,12,9};
+//		maopao(arr);
+		System.out.println(getPwd());;
+	}
+
+	/**
+	 * 随机生成6位数字
+	 */
+	public static int getPwd(){
+		int newNum = (int)((Math.random()*9+1)*100000);
+		return newNum;
 	}
 	public static void maopao(int[] arr){
 		for (int m=0;m<arr.length-1;m++){

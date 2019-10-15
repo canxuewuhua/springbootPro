@@ -6,7 +6,7 @@ public class StringTest {
         // 2
         System.out.println(yearMonth.substring(0,1));
         System.out.println(yearMonth.substring(5,7));
-        int yearMonthStr = Integer.valueOf(yearMonth.substring(5,7));
+        int yearMonthStr = Integer.valueOf(yearMonth.substring(5,7))-1;
         System.out.println(yearMonthStr);
     }
 }

@@ -10,7 +10,7 @@
         </commentGenerator>
         <!--数据库链接地址账号密码-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf8&amp;useSSL=false" userId="root"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/data_platform?characterEncoding=utf8&amp;useSSL=false" userId="root"
                         password="123456">
         </jdbcConnection>
         <javaTypeResolver>
@@ -42,6 +42,7 @@
 
         <!--生成对应表及类名-->
         <!--<table tableNauseroyee" mapperName="EmployeeDAO" domainObjectName="EmployeeVO"></table>-->
-        <table tableName="lns_report_inout_plan" mapperName="ReportInoutPlanDAO" domainObjectName="ReportInoutPlanVO"></table>
+        <!--<table tableName="lns_report_inout_plan" mapperName="ReportInoutPlanDAO" domainObjectName="ReportInoutPlanVO"></table>-->
+        <table tableName="geo_request_log" mapperName="GeoRequestLogDAO" domainObjectName="GeoRequestLogVO"></table>
     </context>
 </generatorConfiguration>
