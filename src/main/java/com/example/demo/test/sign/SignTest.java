@@ -50,6 +50,9 @@ public class SignTest {
 	 */
 	private static final Map<String, String> requestMap = new HashMap<>();
 
+	/**
+	 * 加密-加签
+	 */
 	public static void testEncrypt() throws Exception {
 		// 平台调用商户接口
 		Map<String, String> paramMap = new HashMap<>();
