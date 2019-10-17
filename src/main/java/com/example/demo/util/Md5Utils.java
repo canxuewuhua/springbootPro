@@ -1,102 +1,87 @@
 package com.example.demo.util;
 
-import java.io.FileInputStream;
-import java.security.DigestInputStream;
+import com.google.common.base.Joiner;
+import org.apache.commons.lang3.StringUtils;
+
 import java.security.MessageDigest;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
- * Created by daven on 2018/02/28.
  */
 public class Md5Utils {
-    public static String getMsg32(String message){
-        StringBuffer sb = encryptData(message);
-        return sb.toString();
-    }
-    public static String getMsg16(String message){
-        StringBuffer sb = encryptData(message);
-        return sb.toString().substring(8, 24);
+
+    public final static String SEPARATOR_SIGN = "&";
+
+    public final static String SECRET_KEY = "secretKey";
+
+    public final static String EQUALS_FLAG = "=";
+
+    /**
+     * 通过map,secretKey获取签名内容
+     * map转换升序排序，最后加上secretKey
+     * @param params
+     * @return
+     */
+    public static String getSignContent(Map<String, String> params,String secretKey) {
+        return getSignContent(params) + SEPARATOR_SIGN + SECRET_KEY + EQUALS_FLAG + secretKey;
     }
 
-    public static StringBuffer encryptData(String message) {
-        StringBuffer sb = new StringBuffer();
-        MessageDigest messageDigest = null;
-        try {
-            messageDigest = MessageDigest.getInstance("MD5");
-            messageDigest.reset();
-            messageDigest.update(message.getBytes("UTF-8"));
-
-            byte[] byteArray = messageDigest.digest();
-            for (int i = 0; i < byteArray.length; i++)
-            {
-                if (Integer.toHexString(0xFF & byteArray[i]).length() == 1)
-                    sb.append("0").append(Integer.toHexString(0xFF & byteArray[i]));
-                else
-                    sb.append(Integer.toHexString(0xFF & byteArray[i]));
-            }
-        } catch (Exception e) {
-            throw new RuntimeException();
+    public static String getMD5Encrypt(String string) {
+        if (string == null || string.trim().length() < 1) {
+            return null;
         }
-        return sb;
-    }
-    
-    public static String fileMD5(String inputFile) {
-        // 缓冲区大小（这个可以抽出一个参数）
-        int bufferSize = 256 * 1024;
-        FileInputStream fileInputStream = null;
-        DigestInputStream digestInputStream = null;
+        String result = null;
+        // 用来将字节转换成 16 进制表示的字符
+        char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
         try {
-            // 拿到一个MD5转换器（同样，这里可以换成SHA1）
-            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-            // 使用DigestInputStream
-            fileInputStream = new FileInputStream(inputFile);
-            digestInputStream = new DigestInputStream(fileInputStream,messageDigest);
-            // read的过程中进行MD5处理，直到读完文件
-            byte[] buffer =new byte[bufferSize];
-            while (digestInputStream.read(buffer) > 0);
-            // 获取最终的MessageDigest
-            messageDigest= digestInputStream.getMessageDigest();
-            // 拿到结果，也是字节数组，包含16个元素
-            byte[] resultByteArray = messageDigest.digest();
-            // 同样，把字节数组转换成字符串
-            return byteArrayToHex(resultByteArray);
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(string.getBytes("UTF-8"));
+            byte tmp[] = md.digest(); // MD5 的计算结果是一个 128 位的长整数，
+            // 用字节表示就是 16 个字节
+            char str[] = new char[16 * 2]; // 每个字节用 16 进制表示的话，使用两个字符，
+            // 所以表示成 16 进制需要 32 个字符
+            int k = 0; // 表示转换结果中对应的字符位置
+            for (int i = 0; i < 16; i++) { // 从第一个字节开始，对 MD5 的每一个字节
+                // 转换成 16 进制字符的转换
+                byte byte0 = tmp[i]; // 取第 i 个字节
+                str[k++] = hexDigits[byte0 >>> 4 & 0xf]; // 取字节中高 4 位的数字转换,
+                // >>> 为逻辑右移，将符号位一起右移
+                str[k++] = hexDigits[byte0 & 0xf]; // 取字节中低 4 位的数字转换
+            }
+            result = new String(str); // 换后的结果转换为字符串
+
         } catch (Exception e) {
             e.printStackTrace();
-            return "";
-        } finally {
-            try {
-                digestInputStream.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-                return "";
-            }
-            try {
-                fileInputStream.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-                return "";
-            }
         }
+        return result;
     }
-    
-    public static String byteArrayToHex(byte[] byteArray) {
-        
-        // 首先初始化一个字符数组，用来存放每个16进制字符
-        char[] hexDigits = {'0','1','2','3','4','5','6','7','8','9', 'A','B','C','D','E','F' };
-        // new一个字符数组，这个就是用来组成结果字符串的（解释一下：一个byte是八位二进制，也就是2位十六进制字符（2的8次方等于16的2次方））
-        char[] resultCharArray =new char[byteArray.length * 2];
-        // 遍历字节数组，通过位运算（位运算效率高），转换成字符放到字符数组中去
-        int index = 0;
-        for (byte b : byteArray) {
-            resultCharArray[index++] = hexDigits[b>>> 4 & 0xf];
-            resultCharArray[index++] = hexDigits[b& 0xf];
+
+    /**
+     * 对签名转换升序排序
+     *
+     * @param params
+     * @return
+     */
+    public static String getSignContent(Map<String, String> params) {
+        Map<String, String> keyValueMap = new TreeMap<String, String>();
+
+        for (Map.Entry<String, String> entry : params.entrySet()){
+            String key = entry.getKey();
+            String value = entry.getValue();
+            if (!"sign".equals(key) && !"signType".equals(key)) {
+                if (StringUtils.isNotEmpty(value) && value instanceof String ){
+                    keyValueMap.put(key, value);
+                }
+            }
+
         }
-        
-        // 字符数组组合成字符串返回
-        return new String(resultCharArray);
+        return Joiner.on("&").withKeyValueSeparator("=").join(keyValueMap);
     }
-    
+
     public static void main(String[] args){
-//        System.out.println(Md5Utils.fileMD5("F:/download/GeoIP2-City_20170725.tar.gz"));
-        System.out.println(Md5Utils.encryptData("1111111"));
+        System.out.println(Md5Utils.getMD5Encrypt("1111111"));
     }
+
+
 }

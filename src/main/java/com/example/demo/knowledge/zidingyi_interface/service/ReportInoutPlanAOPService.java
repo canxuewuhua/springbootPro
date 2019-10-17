@@ -30,7 +30,7 @@ public class ReportInoutPlanAOPService {
 		ReportInoutPlanVO reportInoutPlanVO = new ReportInoutPlanVO();
 		reportInoutPlanVO.setCustInoutPlanLedgerId(SerialNumberUtil.getPrimaryId());
 		reportInoutPlanVO.setCustomerCode("1027341854");
-		reportInoutPlanVO.setCustomerName("朱永强");
+		reportInoutPlanVO.setCustomerName("张三丰");
 		reportInoutPlanDAO.insert(reportInoutPlanVO);
 		log.info("数据插入完成..");
 		return ResultUtils.success();

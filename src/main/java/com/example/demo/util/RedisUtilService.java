@@ -20,8 +20,12 @@ public class RedisUtilService {
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
-    //=============================common============================
+    private static String redisStaticPrefix = "pro_redis";
 
+    //=============================common============================
+    public String getRedisKey(String key){
+        return redisStaticPrefix + key;
+    }
     /**
      * 指定缓存失效时间
      *

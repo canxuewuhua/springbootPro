@@ -1,6 +1,5 @@
 package com.example.demo.util;
 
-import com.example.demo.constant.ConstRedisParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
@@ -14,6 +13,8 @@ public class SerialNumberUtil {
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
+    @Autowired
+    private RedisUtilService redisUtilService;
 
     private static SerialNumberUtil serialNumberUtil;
 
@@ -24,6 +25,20 @@ public class SerialNumberUtil {
     public void init() {
         serialNumberUtil = this;
         serialNumberUtil.stringRedisTemplate = this.stringRedisTemplate;
+        serialNumberUtil.redisUtilService = this.redisUtilService;
+    }
+
+    /**
+     * 针对第三方请求流水ID
+     */
+    public static String getRequestId() {
+        String key = serialNumberUtil.redisUtilService.getRedisKey("generate:id:request:");
+        long redisValue = incr(key);
+        StringBuffer sbRequest = new StringBuffer();
+        long requestTemp = System.currentTimeMillis();
+        sbRequest.append(requestTemp);
+        sbRequest.append(String.valueOf(redisValue));
+        return sbRequest.toString();
     }
 
     /**
@@ -31,18 +46,6 @@ public class SerialNumberUtil {
      */
     public static String getPrimaryId() {
         return UUID.randomUUID().toString();
-    }
-
-    /**
-     * 针对第三方请求流水ID
-     */
-    public static String getRequestId() {
-        long redisValue = incr(ConstRedisParam.GENERATE_ID_REQUEST_KEY);
-        StringBuffer sbRequest = new StringBuffer();
-        long requestTemp = System.currentTimeMillis();
-        sbRequest.append(requestTemp);
-        sbRequest.append(String.valueOf(redisValue));
-        return sbRequest.toString();
     }
 
     /**

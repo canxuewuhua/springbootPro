@@ -2,7 +2,6 @@ package com.example.demo.exercise.delete_if_else.controller;
 
 import com.example.demo.exercise.delete_if_else.OrderDTO;
 import com.example.demo.exercise.delete_if_else.strategy.OrderServiceV2Impl;
-import com.example.demo.util.SerialNumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
