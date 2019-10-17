@@ -14,7 +14,8 @@ public enum CodeMsg {
     OVERDUE_BATCH_RUN_LOCKING(201001, "逾期跑批锁定中"),
 
     QUERY_PARTNER_SERVICE_FAILURE(300001, "商户标准为空，获取业务层数据失败"),
-    SYSTEM_VERIFY_SIGN_FAIL(300002, "签名验证失败");
+    SYSTEM_VERIFY_SIGN_FAIL(300002, "签名验证失败"),
+    DATE_FORMAT_ERROR(300003, "日期格式错误.");
 
 
 

@@ -475,6 +475,22 @@ public class DateUtil {
         return timeStamp;
     }
 
+
+    /**
+     * 判断还款时此期次是否逾期 true 逾期 false 未逾期
+     * 比较还款计划台账计划日期和到账单交易日期
+     */
+    public int getOverdueDays(Date planDate, Date batchDate) {
+        UFDate batchUfDate = new UFDate(batchDate);
+        UFDate ufDate = new UFDate(planDate);
+        // 如果计划还款日期早于到账单交易日期则为逾期，否则为未逾期
+        if (ufDate.before(batchUfDate)) {
+            return (int) DateUtil.getDaysBetween(planDate, batchDate);
+        } else {
+            return 0;
+        }
+    }
+
     public static void main(String[] args) throws ParseException {
         System.out.println(getPerFirstDayOfMonth("2017-09")+"00:00:00");
         System.out.println(getTimeStamp(getLastDayOfMonth("2017-09")+"00:00:00")*1000000000);
