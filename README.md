@@ -117,3 +117,7 @@
 十 内存和cpu的关系
 # CPU是负责运算和处理的，内存是交换数据的
 # 当程序或者操作者对CPU发出指令，这些指令和数据暂存在内存里，在CPU空闲时传送给CPU，CPU处理后把结果输出到输出设备上，输出设备就是显示器，打印机等。
+
+十一 http请求第三方接口加密加签和验签解密
+# 在src\main\java\com\example\demo\test\sign\SignTest.java类中
+# Java加解密技术系列之RSA详解  参考网址：https://www.jb51.net/article/96144.htm
