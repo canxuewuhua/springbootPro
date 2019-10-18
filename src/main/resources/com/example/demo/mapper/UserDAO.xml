@@ -213,5 +213,19 @@
       order by ${orderByClause}
     </if>
   </select>
+
+  <select id="selectTongDunRecord" parameterType="com.example.demo.test.listmap.dto.TongDunRequestDTO" resultType="java.util.Map">
+    SELECT username,name,age,balance
+    FROM user
+    <where>
+
+      <if test="record.name != null and record.name != ''">
+        AND name = #{record.name,jdbcType=VARCHAR}
+      </if>
+      <if test="record.age != null">
+        AND age = #{record.age,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
   <!-- ***********自定义结束************* -->
 </mapper>

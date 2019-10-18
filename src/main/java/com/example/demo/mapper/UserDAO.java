@@ -5,6 +5,7 @@ import com.example.demo.domain.UserVOExample;
 import java.util.List;
 import java.util.Map;
 
+import com.example.demo.test.listmap.dto.TongDunRequestDTO;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserDAO {
@@ -31,4 +32,6 @@ public interface UserDAO {
     int updateByPrimaryKey(UserVO record);
     /************************自定义开始*************************/
     List<Map<String,Object>> selectMapByExample(UserVOExample example);
+
+    List<Map<String, Object>> selectTongDunRecord(@Param("record") TongDunRequestDTO tongDunRequestDTO);
     /************************自定义结束*************************/}
