@@ -121,3 +121,25 @@
 十一 http请求第三方接口加密加签和验签解密
 # 在src\main\java\com\example\demo\test\sign\SignTest.java类中
 # Java加解密技术系列之RSA详解  参考网址：https://www.jb51.net/article/96144.htm
+# 数字签名
+#   就是只有信息的发送者才能产生的，别人无法伪造的一段数字串，它同时也是对发送者发送的信息的真实性的一个证明
+# 签名
+#    对需要上送的报文[en_data]计算特征值[sign_block]，相关算法包括[md5、sha1、sha256、sha512等等]。
+#    使用私钥[pri_key]对sign_block加密获得数字签名[sign]。
+#    将sign与en_data打包发送给对方。
+#验签
+#    解析收到的报文，拆分为sign 及 en_data。
+#    对en_data计算特征值[sign_block]，相关算法包括[md5、sha1、sha256、sha512等等双方协商]。
+#    使用公钥[pub_key]对sign解密，获得sign_block1。
+#    比较sign_block 和 sign_block1，若匹配则验证成功，报文未被篡改。
+
+十二、ApiAuthAop的使用
+# aop扫描com.example.demo.test.listmap.controller
+# 所有访问这个controller下的接口，都会经过验签
+# 比如说访问getUser接口，需要通过小米支付代发签名验证，首先这个controller上需要有  @ApiAuth(value = "MI_PAY_LOAN")
+#之后通过 verifyChannelSignService.verifyMipayLoanSign(request)， 使用对方的公钥对sign进行解密，和原始的json串content进行比较，相等则通过签名验证
+# 在上一步需要注意 name和age参数是封装在encryptData中的，postman里面不需要写name和age参数，再加上encryptKey和sign这三个参数即可访问验签代码
+
+#通过验签后，正式访问接口，接口使用DTO进行接收参数，DTO上需要加上注解 @ModelAttribute @RequestBody，尤其是@ModelAttribute，否则会报错，它用于从model、
+# Form表单或者URL请求参数中获取属性值
+# 取出encryptKey，使用自己的私钥将encryptKey进行解密，得到原始AES KEY，再使用这个AES KEY将encryptData进行解密，得到原始的json串后进行业务操作

@@ -2,8 +2,10 @@ package com.example.demo.util;
 
 import com.google.common.base.Joiner;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.NameValuePair;
 
 import java.security.MessageDigest;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -25,6 +27,31 @@ public class Md5Utils {
      */
     public static String getSignContent(Map<String, String> params,String secretKey) {
         return getSignContent(params) + SEPARATOR_SIGN + SECRET_KEY + EQUALS_FLAG + secretKey;
+    }
+    /**
+     * 对签名转换升序排序
+     *
+     * @param params
+     * @return
+     */
+    public static String getSignContent(List<NameValuePair> params, String secretKey) {
+        return getSignContent(params) + SEPARATOR_SIGN + SECRET_KEY + EQUALS_FLAG + secretKey;
+    }
+    /**
+     * 对签名转换升序排序
+     *
+     * @param params
+     * @return
+     */
+    public static String getSignContent(List<NameValuePair> params) {
+        Map<String, String> keyValueMap = new TreeMap<String, String>();
+        for (NameValuePair nameValuePair : params) {
+            if (!"sign".equals(nameValuePair.getName()) && !"signType".equals(nameValuePair.getName())) {
+                keyValueMap.put(nameValuePair.getName(), nameValuePair.getValue());
+            }
+        }
+//        logger.info("参加签名的参数列表：{}", Joiner.on("&").withKeyValueSeparator("=").join(keyValueMap));
+        return Joiner.on("&").withKeyValueSeparator("=").join(keyValueMap);
     }
 
     public static String getMD5Encrypt(String string) {

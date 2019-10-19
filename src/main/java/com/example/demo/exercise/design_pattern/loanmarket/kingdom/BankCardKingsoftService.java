@@ -1,4 +1,4 @@
-package com.example.demo.exercise.design_pattern.loanmarket.kingsoft;
+package com.example.demo.exercise.design_pattern.loanmarket.kingdom;
 
 import com.example.demo.common.ResultDTO;
 import com.example.demo.exercise.design_pattern.loanmarket.IBankCardService;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * 银行卡相关
  */
 @Slf4j
-@Service("KINGSOFT" + "bankcardServie")
+@Service("KINGDOM" + "bankcardServie")
 public class BankCardKingsoftService implements IBankCardService {
 
     /**

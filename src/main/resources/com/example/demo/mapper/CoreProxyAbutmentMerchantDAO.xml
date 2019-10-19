@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.CoreProxyAbutmentMerchantDAO">
+  <resultMap id="BaseResultMap" type="com.example.demo.domain.CoreProxyAbutmentMerchantVO">
+    <id column="access_app_id" jdbcType="VARCHAR" property="accessAppId" />
+    <id column="access_key" jdbcType="VARCHAR" property="accessKey" />
+    <result column="access_app_name" jdbcType="VARCHAR" property="accessAppName" />
+    <result column="secret_key" jdbcType="VARCHAR" property="secretKey" />
+    <result column="use_flag" jdbcType="CHAR" property="useFlag" />
+    <result column="use_begin_date" jdbcType="TIMESTAMP" property="useBeginDate" />
+    <result column="use_end_time" jdbcType="TIMESTAMP" property="useEndTime" />
+    <result column="abutment_name" jdbcType="VARCHAR" property="abutmentName" />
+    <result column="abutment_tel" jdbcType="VARCHAR" property="abutmentTel" />
+    <result column="op_no" jdbcType="VARCHAR" property="opNo" />
+    <result column="op_name" jdbcType="VARCHAR" property="opName" />
+    <result column="br_name" jdbcType="VARCHAR" property="brName" />
+    <result column="lst_mod_time" jdbcType="TIMESTAMP" property="lstModTime" />
+    <result column="reg_date" jdbcType="TIMESTAMP" property="regDate" />
+    <result column="ext1" jdbcType="VARCHAR" property="ext1" />
+    <result column="ext2" jdbcType="VARCHAR" property="ext2" />
+    <result column="ext3" jdbcType="VARCHAR" property="ext3" />
+    <result column="ext4" jdbcType="VARCHAR" property="ext4" />
+    <result column="ext5" jdbcType="VARCHAR" property="ext5" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    access_app_id, access_key, access_app_name, secret_key, use_flag, use_begin_date, 
+    use_end_time, abutment_name, abutment_tel, op_no, op_name, br_name, lst_mod_time, 
+    reg_date, ext1, ext2, ext3, ext4, ext5
+  </sql>
+  <select id="selectByExample" parameterType="com.example.demo.domain.CoreProxyAbutmentMerchantVOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from core_proxy_abutment_merchant
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.example.demo.domain.CoreProxyAbutmentMerchantVOKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from core_proxy_abutment_merchant
+    where access_app_id = #{accessAppId,jdbcType=VARCHAR}
+      and access_key = #{accessKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.demo.domain.CoreProxyAbutmentMerchantVOKey">
+    delete from core_proxy_abutment_merchant
+    where access_app_id = #{accessAppId,jdbcType=VARCHAR}
+      and access_key = #{accessKey,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.demo.domain.CoreProxyAbutmentMerchantVOExample">
+    delete from core_proxy_abutment_merchant
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.domain.CoreProxyAbutmentMerchantVO">
+    insert into core_proxy_abutment_merchant (access_app_id, access_key, access_app_name, 
+      secret_key, use_flag, use_begin_date, 
+      use_end_time, abutment_name, abutment_tel, 
+      op_no, op_name, br_name, 
+      lst_mod_time, reg_date, ext1, 
+      ext2, ext3, ext4, ext5
+      )
+    values (#{accessAppId,jdbcType=VARCHAR}, #{accessKey,jdbcType=VARCHAR}, #{accessAppName,jdbcType=VARCHAR}, 
+      #{secretKey,jdbcType=VARCHAR}, #{useFlag,jdbcType=CHAR}, #{useBeginDate,jdbcType=TIMESTAMP}, 
+      #{useEndTime,jdbcType=TIMESTAMP}, #{abutmentName,jdbcType=VARCHAR}, #{abutmentTel,jdbcType=VARCHAR}, 
+      #{opNo,jdbcType=VARCHAR}, #{opName,jdbcType=VARCHAR}, #{brName,jdbcType=VARCHAR}, 
+      #{lstModTime,jdbcType=TIMESTAMP}, #{regDate,jdbcType=TIMESTAMP}, #{ext1,jdbcType=VARCHAR}, 
+      #{ext2,jdbcType=VARCHAR}, #{ext3,jdbcType=VARCHAR}, #{ext4,jdbcType=VARCHAR}, #{ext5,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.domain.CoreProxyAbutmentMerchantVO">
+    insert into core_proxy_abutment_merchant
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accessAppId != null">
+        access_app_id,
+      </if>
+      <if test="accessKey != null">
+        access_key,
+      </if>
+      <if test="accessAppName != null">
+        access_app_name,
+      </if>
+      <if test="secretKey != null">
+        secret_key,
+      </if>
+      <if test="useFlag != null">
+        use_flag,
+      </if>
+      <if test="useBeginDate != null">
+        use_begin_date,
+      </if>
+      <if test="useEndTime != null">
+        use_end_time,
+      </if>
+      <if test="abutmentName != null">
+        abutment_name,
+      </if>
+      <if test="abutmentTel != null">
+        abutment_tel,
+      </if>
+      <if test="opNo != null">
+        op_no,
+      </if>
+      <if test="opName != null">
+        op_name,
+      </if>
+      <if test="brName != null">
+        br_name,
+      </if>
+      <if test="lstModTime != null">
+        lst_mod_time,
+      </if>
+      <if test="regDate != null">
+        reg_date,
+      </if>
+      <if test="ext1 != null">
+        ext1,
+      </if>
+      <if test="ext2 != null">
+        ext2,
+      </if>
+      <if test="ext3 != null">
+        ext3,
+      </if>
+      <if test="ext4 != null">
+        ext4,
+      </if>
+      <if test="ext5 != null">
+        ext5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accessAppId != null">
+        #{accessAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="accessKey != null">
+        #{accessKey,jdbcType=VARCHAR},
+      </if>
+      <if test="accessAppName != null">
+        #{accessAppName,jdbcType=VARCHAR},
+      </if>
+      <if test="secretKey != null">
+        #{secretKey,jdbcType=VARCHAR},
+      </if>
+      <if test="useFlag != null">
+        #{useFlag,jdbcType=CHAR},
+      </if>
+      <if test="useBeginDate != null">
+        #{useBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useEndTime != null">
+        #{useEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="abutmentName != null">
+        #{abutmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="abutmentTel != null">
+        #{abutmentTel,jdbcType=VARCHAR},
+      </if>
+      <if test="opNo != null">
+        #{opNo,jdbcType=VARCHAR},
+      </if>
+      <if test="opName != null">
+        #{opName,jdbcType=VARCHAR},
+      </if>
+      <if test="brName != null">
+        #{brName,jdbcType=VARCHAR},
+      </if>
+      <if test="lstModTime != null">
+        #{lstModTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regDate != null">
+        #{regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext1 != null">
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null">
+        #{ext3,jdbcType=VARCHAR},
+      </if>
+      <if test="ext4 != null">
+        #{ext4,jdbcType=VARCHAR},
+      </if>
+      <if test="ext5 != null">
+        #{ext5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.domain.CoreProxyAbutmentMerchantVOExample" resultType="java.lang.Long">
+    select count(*) from core_proxy_abutment_merchant
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update core_proxy_abutment_merchant
+    <set>
+      <if test="record.accessAppId != null">
+        access_app_id = #{record.accessAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accessKey != null">
+        access_key = #{record.accessKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accessAppName != null">
+        access_app_name = #{record.accessAppName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.secretKey != null">
+        secret_key = #{record.secretKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useFlag != null">
+        use_flag = #{record.useFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.useBeginDate != null">
+        use_begin_date = #{record.useBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.useEndTime != null">
+        use_end_time = #{record.useEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.abutmentName != null">
+        abutment_name = #{record.abutmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.abutmentTel != null">
+        abutment_tel = #{record.abutmentTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opNo != null">
+        op_no = #{record.opNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opName != null">
+        op_name = #{record.opName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brName != null">
+        br_name = #{record.brName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lstModTime != null">
+        lst_mod_time = #{record.lstModTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.regDate != null">
+        reg_date = #{record.regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ext1 != null">
+        ext1 = #{record.ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext2 != null">
+        ext2 = #{record.ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext3 != null">
+        ext3 = #{record.ext3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext4 != null">
+        ext4 = #{record.ext4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext5 != null">
+        ext5 = #{record.ext5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update core_proxy_abutment_merchant
+    set access_app_id = #{record.accessAppId,jdbcType=VARCHAR},
+      access_key = #{record.accessKey,jdbcType=VARCHAR},
+      access_app_name = #{record.accessAppName,jdbcType=VARCHAR},
+      secret_key = #{record.secretKey,jdbcType=VARCHAR},
+      use_flag = #{record.useFlag,jdbcType=CHAR},
+      use_begin_date = #{record.useBeginDate,jdbcType=TIMESTAMP},
+      use_end_time = #{record.useEndTime,jdbcType=TIMESTAMP},
+      abutment_name = #{record.abutmentName,jdbcType=VARCHAR},
+      abutment_tel = #{record.abutmentTel,jdbcType=VARCHAR},
+      op_no = #{record.opNo,jdbcType=VARCHAR},
+      op_name = #{record.opName,jdbcType=VARCHAR},
+      br_name = #{record.brName,jdbcType=VARCHAR},
+      lst_mod_time = #{record.lstModTime,jdbcType=TIMESTAMP},
+      reg_date = #{record.regDate,jdbcType=TIMESTAMP},
+      ext1 = #{record.ext1,jdbcType=VARCHAR},
+      ext2 = #{record.ext2,jdbcType=VARCHAR},
+      ext3 = #{record.ext3,jdbcType=VARCHAR},
+      ext4 = #{record.ext4,jdbcType=VARCHAR},
+      ext5 = #{record.ext5,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.domain.CoreProxyAbutmentMerchantVO">
+    update core_proxy_abutment_merchant
+    <set>
+      <if test="accessAppName != null">
+        access_app_name = #{accessAppName,jdbcType=VARCHAR},
+      </if>
+      <if test="secretKey != null">
+        secret_key = #{secretKey,jdbcType=VARCHAR},
+      </if>
+      <if test="useFlag != null">
+        use_flag = #{useFlag,jdbcType=CHAR},
+      </if>
+      <if test="useBeginDate != null">
+        use_begin_date = #{useBeginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useEndTime != null">
+        use_end_time = #{useEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="abutmentName != null">
+        abutment_name = #{abutmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="abutmentTel != null">
+        abutment_tel = #{abutmentTel,jdbcType=VARCHAR},
+      </if>
+      <if test="opNo != null">
+        op_no = #{opNo,jdbcType=VARCHAR},
+      </if>
+      <if test="opName != null">
+        op_name = #{opName,jdbcType=VARCHAR},
+      </if>
+      <if test="brName != null">
+        br_name = #{brName,jdbcType=VARCHAR},
+      </if>
+      <if test="lstModTime != null">
+        lst_mod_time = #{lstModTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regDate != null">
+        reg_date = #{regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext1 != null">
+        ext1 = #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null">
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null">
+        ext3 = #{ext3,jdbcType=VARCHAR},
+      </if>
+      <if test="ext4 != null">
+        ext4 = #{ext4,jdbcType=VARCHAR},
+      </if>
+      <if test="ext5 != null">
+        ext5 = #{ext5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where access_app_id = #{accessAppId,jdbcType=VARCHAR}
+      and access_key = #{accessKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.domain.CoreProxyAbutmentMerchantVO">
+    update core_proxy_abutment_merchant
+    set access_app_name = #{accessAppName,jdbcType=VARCHAR},
+      secret_key = #{secretKey,jdbcType=VARCHAR},
+      use_flag = #{useFlag,jdbcType=CHAR},
+      use_begin_date = #{useBeginDate,jdbcType=TIMESTAMP},
+      use_end_time = #{useEndTime,jdbcType=TIMESTAMP},
+      abutment_name = #{abutmentName,jdbcType=VARCHAR},
+      abutment_tel = #{abutmentTel,jdbcType=VARCHAR},
+      op_no = #{opNo,jdbcType=VARCHAR},
+      op_name = #{opName,jdbcType=VARCHAR},
+      br_name = #{brName,jdbcType=VARCHAR},
+      lst_mod_time = #{lstModTime,jdbcType=TIMESTAMP},
+      reg_date = #{regDate,jdbcType=TIMESTAMP},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR},
+      ext3 = #{ext3,jdbcType=VARCHAR},
+      ext4 = #{ext4,jdbcType=VARCHAR},
+      ext5 = #{ext5,jdbcType=VARCHAR}
+    where access_app_id = #{accessAppId,jdbcType=VARCHAR}
+      and access_key = #{accessKey,jdbcType=VARCHAR}
+  </update>
+</mapper>

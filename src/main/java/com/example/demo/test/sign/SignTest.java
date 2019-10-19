@@ -214,8 +214,45 @@ public class SignTest {
 		System.out.println("第三方公司返回值 业务参数：" + decrypt);
 	}
 
+	/**
+	 * 加密-加签
+	 */
+	public static void testMyEncrypt() throws Exception {
+		// 平台调用商户接口
+		Map<String, String> paramMap = new HashMap<>();
+		paramMap.put("name", "张三丰");
+		paramMap.put("age", "25");
+
+		// 随机⽣成16位AES KEY字符串
+		String aesKey = AESUtils.getKey(16);
+		// 对业务参数转换为json字符串
+		String paramJsonStr = JSON.toJSONString(paramMap);
+		// json字符串使用AES加密并进⾏Base64编码
+		String encryptData = AESUtils.encrypt(paramJsonStr, aesKey);
+		// 使用商户公钥（被调用方公钥）加密AES KEY
+		String encryptKey = RSASignature.rsaEncode(aesKey.getBytes("utf-8"), RSASignature.getPublicKey(PARTNER_PUB_KEY));
+
+		requestMap.put("encryptKey", encryptKey);
+		requestMap.put("encryptData", encryptData);
+
+		// 加签：生成待签名的字符串 系统参数
+		String signContent = RSASignature.getSignContent(requestMap);
+		// 加签：使用平台私钥（调用方私钥）加密
+		String sign = RSASignature.signByPrivateKey(signContent, MARKET_PRI_KEY);
+		requestMap.put("sign", sign);
+
+		requestMap.forEach((k, v) -> {
+			System.out.println("k -> " + k + " v -> " + v);
+		});
+
+		// 发送请求
+		// String response = HttpClientUtil.sendPostJson(requestMap, "url");
+	}
 	public static void main(String[] args) throws Exception {
+//		testEncrypt();
 //		testDecrypt();
-		genertor();
+//		genertor();
+
+		testMyEncrypt();
 	}
 }

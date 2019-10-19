@@ -10,7 +10,7 @@
         </commentGenerator>
         <!--数据库链接地址账号密码-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/data_platform?characterEncoding=utf8&amp;useSSL=false" userId="root"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf8&amp;useSSL=false" userId="root"
                         password="123456">
         </jdbcConnection>
         <javaTypeResolver>
@@ -31,7 +31,7 @@
                 type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
                 type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
         -->
-        <!--<javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.kingsoft.coreproxy.dao"-->
+        <!--<javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="kingdomsoft.coreproxy.dao"-->
                              <!--targetProject="src/main/java">-->
             <!--<property name="enableSubPackages" value="true"/>-->
         <!--</javaClientGenerator>-->
@@ -43,6 +43,7 @@
         <!--生成对应表及类名-->
         <!--<table tableNauseroyee" mapperName="EmployeeDAO" domainObjectName="EmployeeVO"></table>-->
         <!--<table tableName="lns_report_inout_plan" mapperName="ReportInoutPlanDAO" domainObjectName="ReportInoutPlanVO"></table>-->
-        <table tableName="geo_request_log" mapperName="GeoRequestLogDAO" domainObjectName="GeoRequestLogVO"></table>
+        <!--<table tableName="geo_request_log" mapperName="GeoRequestLogDAO" domainObjectName="GeoRequestLogVO"></table>-->
+        <table tableName="core_proxy_abutment_merchant" mapperName="CoreProxyAbutmentMerchantDAO" domainObjectName="CoreProxyAbutmentMerchantVO"></table>
     </context>
 </generatorConfiguration>

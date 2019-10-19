@@ -10,6 +10,12 @@ public enum CodeMsg {
     // 全局错误码
     SYSTEM_REQUEST_SUCCESS(100000, "系统请求成功"),
     SYSTEM_REQUEST_FAIL(200000, "系统请求失败"),
+    PARAMETER_ABSENT(200001, "缺少请求参数"),
+    VERIFY_SIGN_FAILED(200002, "签名验证失败"),
+    NOT_FIND_APP_ID(200003, "没有找到接入申请号"),
+    ABUTMENT_MERCHANT_NOT_USE(200004, "接入申请号未使用"),
+    ABUTMENT_MERCHANT_USE_TIME_ERROR(200005, "接入申请号使用时效错误"),
+    SYSTEM_ACCESS_KEY_NOT_EXIST(200006, "ak不存在"),
 
     OVERDUE_BATCH_RUN_LOCKING(201001, "逾期跑批锁定中"),
 

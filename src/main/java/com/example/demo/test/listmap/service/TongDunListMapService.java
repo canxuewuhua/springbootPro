@@ -3,6 +3,9 @@ package com.example.demo.test.listmap.service;
 import com.example.demo.common.ResultDTO;
 import com.example.demo.mapper.UserDAO;
 import com.example.demo.test.listmap.dto.TongDunRequestDTO;
+import com.example.demo.test.listmap.dto.TongdunFromMiDTO;
+import com.example.demo.util.AESUtils;
+import com.example.demo.util.RSASignature;
 import com.example.demo.util.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,10 @@ public class TongDunListMapService {
 
 	@Autowired
 	private UserDAO userDAO;
+
+	private static final Map<String, String> requestMap = new HashMap<>();
+
+	private static final String PARTNER_PRI_KEY = "MIICeQIBADANBgkqhkiG9w0BAQEFAASCAmMwggJfAgEAAoGBAMUZZhxb2q+SB2AlAYSir6WvnhvHk3aBkY/6CMZ/6tC8Mv2FaqtvccZNWEYJL1oqWc05FVf7yIBwgZciwzGjPoE183xSDFsGzv/sRxB+zET9Q/lh8g1NxrbBngv2BujzwLfFRDvRM+iXG9nsQX+3zn4ghazVBUlae0NzcU7bJC/dAgMBAAECgYEAjeBdj1ZTUYRVSND6icYtl5+VuTttG6Xi6Pe7r19O4NhIABQ0l5kOFgeA3lEoQ8gugjpv8bhtOH9D2U4NocJ3b3iaxkGgaD6OzumYWcvk2HcqfFs+VAON0SFotgUH9za+wMXeM6U6ns8VR0wmNCxopAsT56RR9wccGS3SjxSvAAUCQQD0shU75amxpakea1/nlRCWqsx64XcQQn8hPBQs/jKIIOgiWMJFO1p9WhNJAKYkur4Bye148waMtt3pyrkgwHSHAkEAzjRpgpIxxQqd1KwsHtxnoh4aRkgcSJDie1ubCQIiW2usxcUE44RRKVYT1vSM1ANMy6AP/2zRdp2Aqmxj+GH1ewJBAOtiP6DdvU5hYH0dpyT7tPhqlscCCmm+vdJ3m6ToZi2jEgqwPTkh7ls1AeYw1KHybYME/wZhKYTFCFW0qD9EQxMCQQCCHZx+YdW56isRqdrlVlqmd6xIsPP37kSbZoB7vLcFTPpmiR2+mx3Doac/Om0q0zJAQy4VFQtPd69a2q5yaw3FAkEAjLppZUeDR7GtQAc/e4jAHvIVybB8tXJw9A2l/iCiIyuU4Tdy/rD4ovp+mv5LxCqu1BwlY51fvgoXQLNjjlU9fQ==";
 
 	public ResultDTO getUserList(){
 		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
@@ -58,7 +65,19 @@ public class TongDunListMapService {
 		return ResultUtils.success();
 	}
 
-	public ResultDTO getUserInfo(){
+	public ResultDTO getUserInfo(TongdunFromMiDTO tongdunFromMiDTO) throws Exception {
+		// 验签成功
+		System.out.println("验签成功,继续后续操作");
+		// 解密
+		String encryptKey = tongdunFromMiDTO.getEncryptKey();
+		// 使⽤被调用方的RSA私钥进⾏解密得到原始AES KEY
+		byte[] key = RSASignature.rsaDecode(encryptKey, RSASignature.getPrivateKey(PARTNER_PRI_KEY));
+
+		// 使⽤AES KEY进⾏解密，得到业务数据的原始json字符串
+		String encryptData = tongdunFromMiDTO.getEncryptData();
+		String decodeData = AESUtils.decrypt(encryptData, new String(key, "utf-8"));
+		System.out.println("业务数据原始json串 ：" + decodeData);
+
 		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
 		TongDunRequestDTO tongDunRequestDTO1 =new TongDunRequestDTO();
 		tongDunRequestDTO1.setName("张三");

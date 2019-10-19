@@ -14,8 +14,8 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPoolConfig;
 
-//@Configuration
-//@EnableCaching
+@Configuration
+@EnableCaching
 @Slf4j
 public class RedisConfig extends CachingConfigurerSupport {
     @Value("${spring.redis.pool.max-active}")
