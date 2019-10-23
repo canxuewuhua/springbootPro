@@ -21,7 +21,11 @@ public enum CodeMsg {
 
     QUERY_PARTNER_SERVICE_FAILURE(300001, "商户标准为空，获取业务层数据失败"),
     SYSTEM_VERIFY_SIGN_FAIL(300002, "签名验证失败"),
-    DATE_FORMAT_ERROR(300003, "日期格式错误.");
+    DATE_FORMAT_ERROR(300003, "日期格式错误."),
+
+    // 对账文件格式
+    ACCOUNT_OUTER_FILE_RETURN_ROWS_NULL(400001, "对账外部文件返回行数为零"),
+    ACCOUNT_OUTER_FILE_SUFFIXNAME_UNKOWN(400002, "对账外部文件未知的后缀名"),;
 
 
 

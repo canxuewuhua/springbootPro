@@ -25,6 +25,7 @@ public class DateUtil {
     public static final String FORMAT_PATTERN_TIME_TOGETHER = "yyyyMMddHHmmssSSS";
     private static String FORMAT_PATTERN_TIME_HH_MM_SS = "HH:mm:ss";
     private static final String SPLITTERS_LINE = "-";
+    public static final String FORMAT_PATTERN_DAY_TOGETHER = "yyyyMMdd";
 
     private static DateUtil dateUtil;
 
