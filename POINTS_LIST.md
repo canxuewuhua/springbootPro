@@ -34,3 +34,11 @@
  遇到的问题是：在风控的对账有个商户的两个产品的sql一样，得出的listMap结果一样，在第一个listMap得出结果并且封装上其他两个属性后
               再对第二个sql得出的时候，listMap没有封装也有这两个属性，且修改了第二个listMap对象后，第一个listMap也跟着改变了
  解决方法是利用Map对象的深拷贝 putAll
+ 
+ 六、SpringBoot使用@Async异步调用
+ 应用场景：
+ 1、某些耗时较长的而用户不需要等待该方法的处理结果
+ 2、某些耗时较长的方法，后面的程序不需要用到这个方法的处理结果时
+
+需要异步结果的使用Future作为返回类型，new AsyncResult
+ 相关类：rc\main\java\com\example\demo\exercise\async\TaskDemo.java
