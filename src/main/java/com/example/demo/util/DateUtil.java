@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -492,8 +493,45 @@ public class DateUtil {
         }
     }
 
+    /**
+     * 判断当前时间是否在[startTime, endTime]区间，注意时间格式要一致
+     *
+     * @param nowTime 当前时间
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     */
+    public static boolean isEffectiveDate(Date nowTime, Date startTime, Date endTime) {
+        if (nowTime.getTime() == startTime.getTime()
+                || nowTime.getTime() == endTime.getTime()) {
+            return true;
+        }
+
+        Calendar date = Calendar.getInstance();
+        date.setTime(nowTime);
+
+        Calendar begin = Calendar.getInstance();
+        begin.setTime(startTime);
+
+        Calendar end = Calendar.getInstance();
+        end.setTime(endTime);
+
+        if (date.after(begin) && date.before(end)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    /**
+     *  返回下个月的这一天
+     */
+    public static String getNextMonthDay(Date date){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        //增加一个月
+        calendar.add(Calendar.MONTH, 1);
+        return new SimpleDateFormat( FORMAT_PATTERN_DAY).format(calendar.getTime());
+    }
+
     public static void main(String[] args) throws ParseException {
-        System.out.println(getPerFirstDayOfMonth("2017-09")+"00:00:00");
-        System.out.println(getTimeStamp(getLastDayOfMonth("2017-09")+"00:00:00")*1000000000);
     }
 }
