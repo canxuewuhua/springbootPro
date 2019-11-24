@@ -143,3 +143,12 @@
 #通过验签后，正式访问接口，接口使用DTO进行接收参数，DTO上需要加上注解 @ModelAttribute @RequestBody，尤其是@ModelAttribute，否则会报错，它用于从model、
 # Form表单或者URL请求参数中获取属性值
 # 取出encryptKey，使用自己的私钥将encryptKey进行解密，得到原始AES KEY，再使用这个AES KEY将encryptData进行解密，得到原始的json串后进行业务操作
+
+
+十三、redis在虚拟机上的启动
+  在虚拟机上的位置在  /usr/local/redis/bin
+  在bin目录下执行   ./redis-server /usr/local/redis/etc/redis.conf & (这种方法启动的时候，会去带上配置文件redis.conf，里面设置的有redis启动密码requirepass)
+  之后执行redis客户端  ./redis-cli
+  auth 123456 (是进入客户端)
+  设置密码 命令：config set requirepass 123456 
+  查询keys   命令： keys *
