@@ -38,6 +38,7 @@ public class UserController {
 
     @RequestMapping("/say")
     public String sayHello(){
+        log.info("打印say的结果");
         Date date = new Date();
         String str = "Hello--World--20180726:{"+date+"}";
         return str;
@@ -52,6 +53,7 @@ public class UserController {
 
     @RequestMapping("/getUser")
     public String getUser(){
+        log.info("getUser的日志打印");
         String str = namevalue+id;
         return str;
     }

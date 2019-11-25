@@ -146,9 +146,21 @@
 
 
 十三、redis在虚拟机上的启动
-  在虚拟机上的位置在  /usr/local/redis/bin
-  在bin目录下执行   ./redis-server /usr/local/redis/etc/redis.conf & (这种方法启动的时候，会去带上配置文件redis.conf，里面设置的有redis启动密码requirepass)
-  之后执行redis客户端  ./redis-cli
-  auth 123456 (是进入客户端)
-  设置密码 命令：config set requirepass 123456 
-  查询keys   命令： keys *
+ # 在虚拟机上的位置在  /usr/local/redis/bin
+ # 在bin目录下执行   ./redis-server /usr/local/redis/etc/redis.conf & (这种方法启动的时候，会去带上配置文件redis.conf，里面设置的有redis启动密码requirepass)
+ # 之后执行redis客户端  ./redis-cli
+ # auth 123456 (是进入客户端)
+ #  设置密码 命令：config set requirepass 123456 
+ #  查询keys   命令： keys *
+ 
+十四、logback的使用
+# 项目可以直接加上logback-spring.xml文件（直接添加就会生效），这样项目的打印日志就会如配置中的配置进行设置
+# 如： spring-boot-wild [http-nio-48890-exec-1] [] - INFO  [UserController.java:41] : 打印say的结果
+
+# 催收项目日志打印 
+# 03:00:00.122 [http-nio-48810-exec-2] [42375a4b-7320-4827-abbe-d33fe97f279d] INFO  [BatchService.java:114] - 当前批次号：20190916，上期批次号：20190816
+# 其中[http-nio-48810-exec-2] 是项目集群中的启用端口
+# 其中[42375a4b-7320-4827-abbe-d33fe97f279d]这个是只要请求同一个接口的所有操作，这个id是一样的
+# 日志拦截器LogInterceptor.java （@Component，自启动）日志拦截器，打印出该请求所有方法链的requestId
+# 注意：logback是slf4j的官方实现，log4j是另一个实现，logback和log4j才是二选一，slf4j是门面日志的api。
+# lombok注解中有   import lombok.extern.slf4j.Slf4j; 所以打印日志只需引入lombok注解即可

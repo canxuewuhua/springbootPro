@@ -11,7 +11,7 @@ import javax.annotation.PostConstruct;
  *   启动类一加载，就记载该类，通过keyCenter的配置文件和在keyCenter中存储的key值，获取到hostName，userName，passWord，port
  *   测试类在test/bestPay/ConnectFTPTest
  */
-@Configuration
+//@Configuration
 @Slf4j
 public class FTPConfig {
 
