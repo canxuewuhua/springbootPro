@@ -164,3 +164,6 @@
 # 日志拦截器LogInterceptor.java （@Component，自启动）日志拦截器，打印出该请求所有方法链的requestId
 # 注意：logback是slf4j的官方实现，log4j是另一个实现，logback和log4j才是二选一，slf4j是门面日志的api。
 # lombok注解中有   import lombok.extern.slf4j.Slf4j; 所以打印日志只需引入lombok注解即可
+
+十五、http url 拼接
+# src\main\java\com\example\demo\util\StringConcatUtil.java 拼接url参数字符串
