@@ -167,3 +167,10 @@
 
 十五、http url 拼接
 # src\main\java\com\example\demo\util\StringConcatUtil.java 拼接url参数字符串
+# String.format(parm1,parm2,parm3)
+
+十六、根据身份证地址的市级名称查询是否属于准入城市列表中之一
+#  两个单元测试类 AddressListFilter是测试是否属于准入城市之一，AddressUtilsTest补全身份证的不全地址
+#  用到service类 ： AddressService
+#  用到DTO是 AddressDTO UserAreaDTO 还有一个解析准入城市列表的DTO CityNameDTO
+#  使用上面的类可以实现 根据不全的地址信息推算完整的地址信息，以过滤满足条件的城市
