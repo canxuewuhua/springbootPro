@@ -44,6 +44,7 @@
         <!--<table tableNauseroyee" mapperName="EmployeeDAO" domainObjectName="EmployeeVO"></table>-->
         <!--<table tableName="lns_report_inout_plan" mapperName="ReportInoutPlanDAO" domainObjectName="ReportInoutPlanVO"></table>-->
         <!--<table tableName="geo_request_log" mapperName="GeoRequestLogDAO" domainObjectName="GeoRequestLogVO"></table>-->
-        <table tableName="core_proxy_abutment_merchant" mapperName="CoreProxyAbutmentMerchantDAO" domainObjectName="CoreProxyAbutmentMerchantVO"></table>
+        <!--<table tableName="core_proxy_abutment_merchant" mapperName="CoreProxyAbutmentMerchantDAO" domainObjectName="CoreProxyAbutmentMerchantVO"></table>-->
+        <table tableName="lm_area_code" mapperName="AreaCodeDAO" domainObjectName="AreaCodeVO"></table>
     </context>
 </generatorConfiguration>
