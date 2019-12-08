@@ -174,3 +174,7 @@
 #  用到service类 ： AddressService
 #  用到DTO是 AddressDTO UserAreaDTO 还有一个解析准入城市列表的DTO CityNameDTO
 #  使用上面的类可以实现 根据不全的地址信息推算完整的地址信息，以过滤满足条件的城市
+
+十七、抽奖的例子
+# src\main\java\com\example\demo\exercise\lottery\Lottery.java
+# 随机产生一注奖或者多注奖，可以设置
