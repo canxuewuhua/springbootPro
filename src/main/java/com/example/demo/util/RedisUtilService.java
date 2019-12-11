@@ -22,6 +22,11 @@ public class RedisUtilService {
 
     private static String redisStaticPrefix = "pro_redis";
 
+    /**
+     * REDIS锁时间，单位秒
+     */
+    public static  final  int REDIS_LOCK_SECONDS = 30 * 60;
+
     //=============================common============================
     public String getRedisKey(String key){
         return redisStaticPrefix + key;
@@ -418,5 +423,26 @@ public class RedisUtilService {
 
     public Long rPush(final String key, final Object value) {
         return redisTemplate.opsForList().rightPush(key, value);
+    }
+
+    /**
+     * 加锁
+     * @param key
+     * @return
+     */
+    public boolean getLock(String key) {
+        boolean result = setNX(key, "1", REDIS_LOCK_SECONDS,TimeUnit.SECONDS);
+        log.info("{}请求锁结果{}", key, result);
+        return result;
+    }
+
+    /**
+     * 释放锁
+     *
+     * @param key
+     */
+    public void releaseLock(String key) {
+        del(key);
+        log.info("{}释放锁成功", key);
     }
 }
