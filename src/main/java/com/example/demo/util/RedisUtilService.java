@@ -432,7 +432,7 @@ public class RedisUtilService {
      */
     public boolean getLock(String key) {
         boolean result = setNX(key, "1", REDIS_LOCK_SECONDS,TimeUnit.SECONDS);
-        log.info("{}请求锁结果{}", key, result);
+        //log.info("{}请求锁结果{}", key, result);
         return result;
     }
 
@@ -443,6 +443,6 @@ public class RedisUtilService {
      */
     public void releaseLock(String key) {
         del(key);
-        log.info("{}释放锁成功", key);
+        //log.info("{}释放锁成功", key);
     }
 }
