@@ -41,9 +41,7 @@ public class RabbitMqConfig implements RabbitTemplate.ReturnCallback {
         //connectionFactory.setHost("120.131.15.17");
         connectionFactory.setPort(5672);
         connectionFactory.setUsername("admin");
-        //connectionFactory.setUsername("ksrong");
         connectionFactory.setPassword("123456");
-        //connectionFactory.setPassword("pvf6ujK7AJkmeVIN");
         connectionFactory.setPublisherConfirms(true);
         //connectionFactory.setVirtualHost();
 

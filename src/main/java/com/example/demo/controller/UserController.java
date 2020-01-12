@@ -47,7 +47,7 @@ public class UserController {
     @RequestMapping(name = "批量扣款", path = "/sayRepayment", method = RequestMethod.GET)
     public String sayRepayment(){
         Date date = new Date();
-        String str = "Kingsoft:{"+date+"}";
+        String str = "BatchRepayment:{"+date+"}";
         return str;
     }
 

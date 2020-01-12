@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service("KINGDOM" + "bankcardServie")
-public class BankCardKingsoftService implements IBankCardService {
+public class BankCardKingDomService implements IBankCardService {
 
     /**
      * 预绑卡发送短信
