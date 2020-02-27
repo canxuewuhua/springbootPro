@@ -532,6 +532,26 @@ public class DateUtil {
         return new SimpleDateFormat( FORMAT_PATTERN_DAY).format(calendar.getTime());
     }
 
+    /**
+     * 判断当前时间距离第二天凌晨的秒数
+     *
+     * @return 返回值单位为[s:秒]
+     *
+     * 本实例可结合redis的失效时间，如果redis的key有年月日标识，可不会考虑该方法
+     */
+    public static Long getSecondsNextEarlyMorning() {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_YEAR, 1);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        System.out.println(cal.get(Calendar.YEAR));
+        System.out.println(cal.get(Calendar.MONTH));
+        System.out.println(cal.get(Calendar.DAY_OF_MONTH));
+        return (cal.getTimeInMillis() - System.currentTimeMillis()) / 1000;
+    }
+
     public static void main(String[] args) throws ParseException {
     }
 }
