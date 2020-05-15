@@ -220,3 +220,7 @@
 
 # 提交对象copy，对象有对象list，该对象list命名一致，如果不一致要再次进行对象间的copy
   demo/beancopier/InoutPlanNotifyDTO、InoutPlanQueryDTO、ItemDTO、BeanCopyListObjectTest
+  
+# 1、随机生成自带种子的随机数
+     分布在0-10之间的客户编码 分布在11-99之间的客户编码 采用客户编码作为种子
+     代码在util包里的 RandomUtil类
