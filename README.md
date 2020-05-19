@@ -238,10 +238,12 @@
      for(Map.Entry<Integer, Integer> entry : map.entrySet()){
      System.out.println("key = " + entry.getKey() + ", value = " + entry.getValue())
      此种方式在大数据量的时候效率最高
-     ②方法2 如果你只需要用到map的keys或values时，你可以遍历KeySet或者values代替entrySet
+     如果你遍历的map是null的话，For-Each循环会抛出NullPointerException异常，所以在遍历之前你应该判断是否为空引用。
+     但是经过测试map集合为空，for循环会不走的
+     ②方法2 如果你只需要用到map的keys或values时，你可以遍历KeySet或者values代替entrySet 二次取值
      for (Integer key : map.keySet()) {
 	 System.out.println("Key = " + key);
-	 ③方法3 使用Iterator迭代
+	 ③方法3 使用Iterator迭代 一次取值
 	 Iterator<Map.Entry<Integer, Integer>> entries = map.entrySet().iterator();
      while (entries.hasNext()) {
      	Map.Entry<Integer, Integer> entry = entries.next();
@@ -249,7 +251,7 @@
      }
      一个重要的特性是可以让你在迭代的时候从map中删除entries的(通过调用iterator.remover())唯一方法.如果你试图在For-Each迭代的时候删除entries，你将会得
      到unpredictable resultes 异常。
-     ④迭代keys并搜索values（低效的）
+     ④迭代keys并搜索values（低效的）二次取值(性能差)
      for (Integer key : map.keySet()) {
 	  Integer value = map.get(key);
 	  System.out.println("Key = " + key + ", Value = " + value);
