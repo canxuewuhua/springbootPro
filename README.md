@@ -226,10 +226,33 @@
      代码在util包里的 RandomUtil类
      
 # 2、[日期格式化和短信随机6位][20200519]
-   ①日期用String.format格式化  ②生成一个短信6位随机码的三种方式 在test_demo中的DateSplitTest类中
+   ①日期用String.format格式化 Date类型转化为需要的格式  ②生成一个短信6位随机码的三种方式 在test_demo中的DateSplitTest类中
 # 3、[Java内存溢出和内存泄漏][20200519]
     内存溢出：是指程序在申请内存时，没有足够的内存空间供其使用，出现out of memory；比如申请了一个integer,但给它存了long才能存下的数，那就是内存溢出
     内存泄漏：是指程序在申请内存后，无法释放已申请的内存空间，一次内存泄露危害可以忽略，但内存泄露堆积后果很严重，无论多少内存,迟早会被占光。
     程序计数器，是唯一一个在java虚拟机规范中没有规定任何OutOfMemoryError的区域
     [因为]：程序计算器仅仅只是一个运行指示器，它所需要存储的内容仅仅就是下一个需要待执行的命令的地址，无论代码有多少，最坏情况下死循环也不会让这块内存
           区域超限，因为程序计算器所维护的就是下一条待执行的命令的地址，所以不存在OutOfMemoryError
+# 4、[HashMap的四种遍历方式][20200519]
+     ①方法1 Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+     for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+     System.out.println("key = " + entry.getKey() + ", value = " + entry.getValue())
+     此种方式在大数据量的时候效率最高
+     ②方法2 如果你只需要用到map的keys或values时，你可以遍历KeySet或者values代替entrySet
+     for (Integer key : map.keySet()) {
+	 System.out.println("Key = " + key);
+	 ③方法3 使用Iterator迭代
+	 Iterator<Map.Entry<Integer, Integer>> entries = map.entrySet().iterator();
+     while (entries.hasNext()) {
+     	Map.Entry<Integer, Integer> entry = entries.next();
+     	System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+     }
+     一个重要的特性是可以让你在迭代的时候从map中删除entries的(通过调用iterator.remover())唯一方法.如果你试图在For-Each迭代的时候删除entries，你将会得
+     到unpredictable resultes 异常。
+     ④迭代keys并搜索values（低效的）
+     for (Integer key : map.keySet()) {
+	  Integer value = map.get(key);
+	  System.out.println("Key = " + key + ", Value = " + value);
+	 }
+
+
