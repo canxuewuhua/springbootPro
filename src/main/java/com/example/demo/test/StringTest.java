@@ -8,5 +8,17 @@ public class StringTest {
         System.out.println(yearMonth.substring(5,7));
         int yearMonthStr = Integer.valueOf(yearMonth.substring(5,7))-1;
         System.out.println(yearMonthStr);
+
+
+        String validDate1 = "2005.01.06-2025.01.06";
+        String validDate2 = "2005.01.01-长期";
+        System.out.println(validDate1.length());
+        System.out.println(validDate2.length());
+
+        System.out.println(validDate1.substring(validDate1.length() -10, validDate1.length()));
+        System.out.println(validDate2.substring(validDate2.length() -2, validDate2.length()));
+
+
+
     }
 }

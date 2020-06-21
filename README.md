@@ -256,5 +256,7 @@
 	  Integer value = map.get(key);
 	  System.out.println("Key = " + key + ", Value = " + value);
 	 }
-
+# 5、[int数组中三个数乘积最大值][20200601]
+    ①先对数组排序Arrays.sort(nums);
+    ②nums[nums.length-1]*nums[nums.length-2]*nums[nums.length-3] 或者 nums[0]*nums[1]*nums[nums.length-1]中的最大值
 
