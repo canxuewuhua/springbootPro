@@ -32,7 +32,7 @@ public class RedisTestService {
 			}
 
 			// 删除缓存，此方法不用再此处，不会设置了又去删除，只为测试
-			stringRedisTemplate.delete(redisKey);
+			//stringRedisTemplate.delete(redisKey);
 		}
 		return paramValue;
 	}

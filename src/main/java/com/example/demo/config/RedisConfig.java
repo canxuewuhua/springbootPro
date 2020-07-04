@@ -15,8 +15,8 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPoolConfig;
 
-@Configuration
-@EnableCaching
+//@Configuration
+//@EnableCaching
 @Slf4j
 public class RedisConfig extends CachingConfigurerSupport {
     @Value("${spring.redis.pool.max-active}")
@@ -57,7 +57,7 @@ public class RedisConfig extends CachingConfigurerSupport {
 //        }
 //        KeyCenterRedisConfigDTO keyCenterRedisConfigDTO = JSONObject.parseObject(response, KeyCenterRedisConfigDTO.class);
 
-        factory.setHostName("192.168.199.239");
+        factory.setHostName("192.168.199.216");
         factory.setDatabase(0);
         factory.setPassword("123456");
         factory.setPort(6379);

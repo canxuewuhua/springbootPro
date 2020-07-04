@@ -37,7 +37,7 @@ public class RabbitMqConfig implements RabbitTemplate.ReturnCallback {
         //RabbitMQConfigDTO rabbitMQConfigDTO = JSONObject.parseObject(response, RabbitMQConfigDTO.class);
 
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
-        connectionFactory.setHost("192.168.199.239");
+        connectionFactory.setHost("192.168.199.216");
         //connectionFactory.setHost("120.131.15.17");
         connectionFactory.setPort(5672);
         connectionFactory.setUsername("admin");
