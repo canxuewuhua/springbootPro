@@ -6,11 +6,28 @@ import java.lang.reflect.Method;
 
 /**
  * Declare 声明
+ * 得到class的三种方式
+ * 一个类在 JVM 中只会有一个 Class 实例,即我们对上面获取的 c1,c2,c3进行 equals 比较，发现都是true
  */
 public class PersonTest {
 
 	public static void main(String[] args) throws ClassNotFoundException, NoSuchFieldException, InstantiationException, IllegalAccessException {
 		print();
+	}
+	
+	public static void validEqual() throws ClassNotFoundException {
+		// 通过对象调用 getClass() 方法来获取,通常应用在：比如你传过来一个 Object
+		Person p1 = new Person();
+		Class c1 = p1.getClass();
+
+		// 直接通过 类名.class 的方式得到,该方法最为安全可靠，程序性能更高
+		Class c2 = Person.class;
+
+		// 通过 Class 对象的 forName() 静态方法来获取，用的最多
+		Class c3 = Class.forName("com.example.demo.test.reflex.Person");
+		System.out.println(c1.equals(c2));
+		System.out.println(c2.equals(c3));
+		System.out.println(c3.equals(c1));
 	}
 
 	public static void print() throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException, InstantiationException {
