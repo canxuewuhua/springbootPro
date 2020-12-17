@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 地域编码 配置常量
  */
-@Component
+//@Component
 @Slf4j
 public class ConstAreaCodeConfiguration {
 
