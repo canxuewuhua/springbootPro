@@ -1,4 +1,4 @@
-package com.example.demo.practice.threadlocal;
+package com.example.demo.practice.juc.threadlocal;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 

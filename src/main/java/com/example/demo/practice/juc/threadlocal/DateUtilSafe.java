@@ -1,4 +1,4 @@
-package com.example.demo.practice.threadlocal;
+package com.example.demo.practice.juc.threadlocal;
 
 import java.text.DateFormat;
 import java.text.ParseException;
